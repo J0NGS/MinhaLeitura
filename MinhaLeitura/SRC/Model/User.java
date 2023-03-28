@@ -1,18 +1,17 @@
 package SRC.Model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable{
     private Long id;
     private String username;
     private String password;
-    private String endereco;
 
-    public User(Long id, String username, String password, String x){
+    public User(Long id, String username, String password){
         this.id = id;
         this.username = username;
         this.password = password;
-        this.endereco = x;
     }
 
     public Long getId() {
@@ -39,14 +38,6 @@ public class User {
         this.password = password;
     }
 
-
-    public String getEndereco() {
-        return this.endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
 
 
     @Override

@@ -1,25 +1,31 @@
 package Tests;
 
+import java.io.IOException;
+import java.util.Hashtable;
+
 import SRC.Model.User;
-import Utils.Reading.UserReading;
-import Utils.Writer.UserWriter;
+import Utils.ED.HashTable;
+import Utils.Reading.ReadingHashTable;
+import Utils.Writer.HashTableWriter;
 
 public class UserTest {
     public static void main(String[] args) {
-        User freitinha = new User(1L, "fabricio", "dangelis", "DEbaixo do viaduto");
-        
-        String arquivo = "MinhaLeitura/Tests/Bin/user.bin";
-        
-        UserWriter writer = new UserWriter();
-        writer.save(freitinha, arquivo);
-        
-        UserReading reading = new UserReading();
-        User userRead = reading.reading(arquivo);
-        System.out.println("Usuário lido do arquivo:");
-        while(userRead != ){
-        System.out.println("ID: " + userRead.getId());
-        System.out.println("Username: " + userRead.getUsername());
-        System.out.println("Password: " + userRead.getPassword());
+        HashTable<Long, User> users = new HashTable<>();
+        HashTable<Long, User> hashReturn = new HashTable<>();
+        User userReturn = null;
+        User userTest = new User(1L, "jotaNeto", "123456");
+        HashTableWriter<Long, User> writer = new HashTableWriter<>();
+        ReadingHashTable<Long, User> reading = new ReadingHashTable<>("E://Documentos/UFERSA/Disciplinas/ED1/MinhaLeitura/MinhaLeitura/Tests/Bin/UserTest.bin");
+        users.put(userTest.getId(), userTest);
+        writer.save(users, "E://Documentos/UFERSA/Disciplinas/ED1/MinhaLeitura/MinhaLeitura/Tests/Bin/UserTest.bin");
+        try {
+            hashReturn = reading.read();
+        } catch (ClassNotFoundException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-    }
+        userReturn = hashReturn.get(userTest.getId());
+        System.out.println(userReturn.getUsername());
+
+    }    
 }
