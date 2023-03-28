@@ -1,6 +1,6 @@
 package Utils.ED;
 
-public interface HashTableInterface <K, V>{
+public interface HashTableInterface <K, V> {
     // Insere um par chave-valor na tabela hash
     void put(K key, V value);
     

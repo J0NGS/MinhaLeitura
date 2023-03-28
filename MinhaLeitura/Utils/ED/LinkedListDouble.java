@@ -1,8 +1,10 @@
 package Utils.ED;
 
+import java.io.Serializable;
+
 import Utils.Exceptions.ListException;
 
-public class LinkedListDouble <T> implements LinkedListInterface<T>{
+public class LinkedListDouble <T> implements LinkedListInterface<T>, Serializable{
 	// Atributos de MyLinkedListSingly
     public Node<T> head;    
     public Node<T> tail;

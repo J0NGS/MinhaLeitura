@@ -1,8 +1,10 @@
 package Utils.ED;
 
+import java.io.Serializable;
+
 /*Classe para representar o elemento de entrada da hashtable */
 
-public class EntryMap<K, V> {
+public class EntryMap<K, V> implements Serializable {
     K key;                      // chave do elemento
     V value;                    // valor correspondente ao elemento
 

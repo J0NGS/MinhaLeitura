@@ -1,6 +1,8 @@
 package Utils.ED;
 
-public class Node <T>{
+import java.io.Serializable;
+
+public class Node <T> implements Serializable{
     T data;
     Node<T> next;
     Node<T> prev;

@@ -2,9 +2,11 @@
 
 package Utils.ED;
 
+import java.io.Serializable;
+
 import Utils.Exceptions.HashTableException;
 
-public class HashTable<K,V> implements HashTableInterface<K,V>{
+public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
     private LinkedListDouble<EntryMap<K, V>> entries;
     private int size;
 
@@ -116,4 +118,22 @@ public class HashTable<K,V> implements HashTableInterface<K,V>{
         else
             return false;
     }
+
+
+    public LinkedListDouble<EntryMap<K,V>> getEntries() {
+        return this.entries;
+    }
+
+    public void setEntries(LinkedListDouble<EntryMap<K,V>> entries) {
+        this.entries = entries;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
 }
