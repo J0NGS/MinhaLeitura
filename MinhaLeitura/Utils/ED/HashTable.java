@@ -5,90 +5,115 @@ package Utils.ED;
 import Utils.Exceptions.HashTableException;
 
 public class HashTable<K,V> implements HashTableInterface<K,V>{
-    // Atributos da tabela hash
-    private LinkedListDouble<EntryMap<K, V>> buckets;           // Elementos armazenados
-    private int size;                                           // Quantidade de elementos armazenados
-    private int capacity;                                       // Capacidade atual da tabela
-    private double loadFactor;                                  // Fator de carga para medir eficiência (elementos/posições)
+    private LinkedListDouble<EntryMap<K, V>> entries;
+    private int size;
 
-    // Construtor
     public HashTable() {
-        this.capacity = 20;                                     // Capacidade inicial setado em 20
-        this.loadFactor = 0.75;                                 // Quanto a lista este 75% irá ocorrer resize
-        this.buckets = new LinkedListDouble<EntryMap<K,V>>();   // inicialização da lista
-        for (int i = 0; i < capacity; i++) {
-            buckets.addFirst(null);
-        }
-        this.size = 0;
+        entries = new LinkedListDouble<EntryMap<K, V>>();
+        size = 0;
     }
 
-    // Insere um par chave-valor na tabela hash
+    //Adiciona elemento na HashTable
     public void put(K key, V value) {
-        int bucketIndex = getBucketIndex(key);
-        EntryMap<K, V> entry = buckets.get(bucketIndex);
+        //Ponteiro temporario para buscar elemento na lista
+        EntryMap<K, V> entry = findEntry(key);
 
-        // Se a chave já existir, atualiza o valor
-        while (entry != null) {
-            if (entry.key.equals(key)) {
-                entry.value = value;
-                return;
-            }
-            entry = entry.next;
-        }
-
-        // Cria uma nova entrada e insere no início da lista
-        EntryMap<K, V> newEntry = new EntryMap<>(key, value);
-        newEntry.next = buckets.get(bucketIndex);
-        buckets.set(bucketIndex, newEntry);
-        size++;
-
-        // Redimensiona a tabela se o fator de carga for atingido
-        if ((double) size / capacity >= loadFactor) {
-            resize();
+        //Se o elemento não exisitr na lista adiciona um novo
+        if (entry == null) {
+            entry = new EntryMap<K, V>(key, value);
+            entries.addLast(entry);
+            size++;
+        } 
+        //Se o elemento já existir na lista com a mesma key o elemento é atualizado pelo novo
+        else {                                                
+            entry.setValue(value);
         }
     }
 
-    // Retorna o valor associado à chave especificada
+    //Retorna elemento a partir da key informada
     public V get(K key) {
-        int bucketIndex = getBucketIndex(key);
-        EntryMap<K, V> entry = buckets.get(bucketIndex);
-        while (entry != null) {
-            if (entry.key.equals(key)) {
-                return entry.value;
-            }
-            entry = entry.next;
+        try {
+            //Procura elemento pela chave
+            EntryMap<K, V> entry = findEntry(key);
+            if(entry != null)
+                return entry.getValue();
+            else
+                throw new HashTableException("Valor não encontrado");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-    return null;
+
+    }
+
+    //Remove um elemento a partir da key
+    public void remove(K key) {
+        try {
+            //Procura elemento
+            EntryMap<K, V> entry = findEntry(key);
+            //Remove da lista    
+            entries.remove(entry);
+            //Dimiminui o tamano
+            size--;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clear() {
+        while (entries.head != null) {
+            entries.removeFirst();
+            size--;
+        }
+    }
+
+    public boolean containsKey(K key) {
+        return findEntry(key) != null;
+    }
+
+    private int hash(K key) {
+        return Math.abs(key.hashCode() % entries.getSize());
+    }
+
+    private EntryMap<K, V> findEntry(K key) {
+        try {
+            //Cria node para começar pela cabeça da lista
+            Node<EntryMap<K, V>> node = entries.head;
+            //Busca node enquando o node atual for diferente de nulo(enquanto não acabar a lista)
+            while (node != null) {
+                //se achar o node com a mesma key retorna ele
+                if (node.data.getKey().equals(key)) {
+                    return node.data;
+                }
+                //caso não encontre no node atual, muda para o node anterior ao atual
+                node = node.next;
+            }
+            throw new HashTableException("Entrada não encontrada");
+        }        
+        catch (Exception e) {
+            return null;
+        }
     }
     
+    public int size() {
+        return size;
+    }
 
-    // Remove a entrada correspondente à chave especificada da tabela hash
-    public V remove(K key) {
-        int bucketIndex = getBucketIndex(key);
-        EntryMap<K, V> entry = buckets.get(bucketIndex);
-        EntryMap<K, V> prevEntry = null;
-        
-        // Busca a entrada correspondente à chave e guarda a entrada anterior
-        while (entry != null) {
-            if (entry.key.equals(key)) {
-                break;
+    public boolean containsValue(V value) {
+        Node<EntryMap<K, V>> node = entries.head;
+        while (node != null) {
+            if (node.data.getValue().equals(value)) {
+                return true;
             }
-            prevEntry = entry;
-            entry = entry.next;
+            node = node.next;
         }
-    
-        // Remove a entrada da lista encadeada e diminui o tamanho
-        if (entry != null) {
-            V value = entry.value;
-            if (prevEntry == null) {
-                buckets.set(bucketIndex, entry.next);
-            } else {
-                prevEntry.next = entry.next;
-            }
-            size--;
-            return value;
-        }
-    
-        return null;
+        return false;
+    }
+
+    public boolean isEmpty(){
+        if(this.size == 0)
+            return true;
+        else
+            return false;
     }
 }

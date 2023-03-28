@@ -5,11 +5,27 @@ package Utils.ED;
 public class EntryMap<K, V> {
     K key;                      // chave do elemento
     V value;                    // valor correspondente ao elemento
-    EntryMap<K, V> next;        // ponteiro para proximo elemento da lista
 
     public EntryMap(K key, V value){
         this.key = key;
         this.value = value;
-        this.next = null;
     }
+
+
+    public K getKey() {
+        return this.key;
+    }
+
+    public void setKey(K key) {
+        this.key = key;
+    }
+
+    public V getValue() {
+        return this.value;
+    }
+
+    public void setValue(V value) {
+        this.value = value;
+    }
+
 }

@@ -8,7 +8,7 @@ public interface HashTableInterface <K, V>{
     V get(K key);
     
     // Remove a entrada correspondente à chave especificada da tabela hash
-    V remove(K key);
+    void remove(K key);
     
     // Verifica se a chave especificada está presente na tabela hash
     boolean containsKey(K key);

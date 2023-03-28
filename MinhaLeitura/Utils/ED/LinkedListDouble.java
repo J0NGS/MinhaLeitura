@@ -151,16 +151,21 @@ public class LinkedListDouble <T> implements LinkedListInterface<T>{
      *  será considerado igual se todos os atributos
      *  forem iguais.
      */
+    try {
 	    while( p != null )                                                          
 	    {
 	        if( p.data.equals(criterio) ) {                                             
-	        	System.out.println();
 	            return p;
 	        }
 	        p = p.next;
 	    }
+        throw new ListException("Node not found");
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
 
-	    return null;
 	}
 
 	
@@ -297,4 +302,8 @@ public class LinkedListDouble <T> implements LinkedListInterface<T>{
             return null;
         }
 	}
+
+    public int getSize(){
+        return this.size;
+    }
 }
