@@ -3,137 +3,136 @@
 package Utils.ED;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import Utils.Exceptions.HashTableException;
 
 public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
-    private LinkedListDouble<EntryMap<K, V>> entries;
+    private EntryMap<K,V>[] entries;
     private int size;
+    private int capacity;
 
-    public HashTable() {
-        entries = new LinkedListDouble<EntryMap<K, V>>();
-        size = 0;
+    public HashTable(){
+        this.capacity = 20;
+        this.entries = new EntryMap[capacity];
+        this.size = 0;
     }
 
-    //Adiciona elemento na HashTable
+    public HashTable(int capacity){
+        this.capacity = capacity;
+        this.entries = new EntryMap[this.capacity];
+        this.size = 0;
+    }
+    @Override
     public void put(K key, V value) {
-        //Ponteiro temporario para buscar elemento na lista
-        EntryMap<K, V> entry = findEntry(key);
+        int hash = key.hashCode();
+        int index = Math.abs(hash) % entries.length;
 
-        //Se o elemento não exisitr na lista adiciona um novo
-        if (entry == null) {
-            entry = new EntryMap<K, V>(key, value);
-            entries.addLast(entry);
-            size++;
-        } 
-        //Se o elemento já existir na lista com a mesma key o elemento é atualizado pelo novo
-        else {                                                
-            entry.setValue(value);
-        }
-    }
-
-    //Retorna elemento a partir da key informada
-    public V get(K key) {
-        try {
-            //Procura elemento pela chave
-            EntryMap<K, V> entry = findEntry(key);
-            if(entry != null)
-                return entry.getValue();
-            else
-                throw new HashTableException("Valor não encontrado");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    //Remove um elemento a partir da key
-    public void remove(K key) {
-        try {
-            //Procura elemento
-            EntryMap<K, V> entry = findEntry(key);
-            //Remove da lista    
-            entries.remove(entry);
-            //Dimiminui o tamano
-            size--;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void clear() {
-        while (entries.head != null) {
-            entries.removeFirst();
-            size--;
-        }
-    }
-
-    public boolean containsKey(K key) {
-        return findEntry(key) != null;
-    }
-
-    private int hash(K key) {
-        return Math.abs(key.hashCode() % entries.getSize());
-    }
-
-    private EntryMap<K, V> findEntry(K key) {
-        try {
-            //Cria node para começar pela cabeça da lista
-            Node<EntryMap<K, V>> node = entries.head;
-            //Busca node enquando o node atual for diferente de nulo(enquanto não acabar a lista)
-            while (node != null) {
-                //se achar o node com a mesma key retorna ele
-                if (node.data.getKey().equals(key)) {
-                    return node.data;
-                }
-                //caso não encontre no node atual, muda para o node anterior ao atual
-                node = node.next;
+        while(entries[index] != null){
+            if(entries[index].getKey().equals(key)){
+                entries[index].setValue(value);
             }
-            throw new HashTableException("Entrada não encontrada");
-        }        
-        catch (Exception e) {
-            return null;
+            index = (index + 1) % entries.length;
+        }
+
+        entries[index] = new EntryMap<K,V>(key, value);
+        size++;
+
+        if((double) size / entries.length >= 0.75){
+            resize();
         }
     }
-    
-    public int size() {
-        return size;
+
+    @Override
+    public V get(K key) {
+        int hash = key.hashCode();
+        int index = Math.abs(hash) % entries.length;
+        try {
+            while(entries[index] != null){
+                if(entries[index].getKey().equals(key)){
+                    return entries[index].getValue();
+                }
+                index = (index + 1) % entries.length;
+            }
+            throw new HashTableException("Não encontrado nenhum valor para essa chave"); 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 
-    public boolean containsValue(V value) {
-        Node<EntryMap<K, V>> node = entries.head;
-        while (node != null) {
-            if (node.data.getValue().equals(value)) {
+    @Override
+    public void remove(K key) {
+        int hash = key.hashCode();
+        int index = Math.abs(hash) % entries.length;
+
+        while (entries[index] != null) {
+            if (entries[index].getKey().equals(key)) {
+                entries[index] = null;
+                size--;
+                return;
+            }
+            index = (index + 1) % entries.length;
+        }
+
+        throw new HashTableException("Chave não encontrada");
+    }
+
+    @Override
+    public boolean containsKey(K key) {
+        int hash = key.hashCode();
+        int index = Math.abs(hash) % entries.length;
+
+        while (entries[index] != null) {
+            if (entries[index].getKey().equals(key)) {
                 return true;
             }
-            node = node.next;
+            index = (index + 1) % entries.length;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean containsValue(V value) {
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i] != null && entries[i].getValue().equals(value)) {
+                return true;
+            }
         }
         return false;
     }
 
-    public boolean isEmpty(){
-        if(this.size == 0)
-            return true;
-        else
-            return false;
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
     }
 
-
-    public LinkedListDouble<EntryMap<K,V>> getEntries() {
-        return this.entries;
-    }
-
-    public void setEntries(LinkedListDouble<EntryMap<K,V>> entries) {
-        this.entries = entries;
-    }
-
-    public int getSize() {
+    @Override
+    public int size() {
         return this.size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    private void resize() {
+        int newCapacity = capacity + 20;
+        EntryMap<K, V>[] newTable = new EntryMap[newCapacity];
+        for (EntryMap<K, V> entry : entries) {
+            if (entry != null) {
+                int index = Math.abs(entry.getKey().hashCode()) % newCapacity;
+                while (newTable[index] != null) {
+                    index = (index + 1) % newCapacity;
+                }
+                newTable[index] = entry;
+            }
+        }
+        this.entries = newTable;
+        this.capacity = newCapacity;
+    }
+
+    public void clear() {
+        Arrays.fill(entries, null);
+        size = 0;
     }
 
 }

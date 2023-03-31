@@ -13,6 +13,9 @@ public class EntryMap<K, V> implements Serializable {
         this.value = value;
     }
 
+    public EntryMap() {
+    }
+
 
     public K getKey() {
         return this.key;
