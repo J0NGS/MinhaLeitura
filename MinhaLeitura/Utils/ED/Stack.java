@@ -1,6 +1,6 @@
 package Utils.ED;
 
-import Utils.Exceptions.StackException;
+import Utils.ED.Exceptions.StackException;
 
 public class Stack <T> implements StackInterface<T>{
     int size;
@@ -82,6 +82,6 @@ public class Stack <T> implements StackInterface<T>{
             System.out.println("Index: " + i + " = " + array[i] + "/n");
         }
         System.out.println("Top:  = " + array[top] + "/n");
-    }f
+    }
     
 }
