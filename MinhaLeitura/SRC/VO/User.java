@@ -1,4 +1,4 @@
-package SRC.Model;
+package SRC.VO;
 
 import java.io.Serializable;
 import java.util.Objects;

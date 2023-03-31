@@ -5,7 +5,7 @@ package Utils.ED;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import Utils.Exceptions.HashTableException;
+import Utils.ED.Exceptions.HashTableException;
 
 public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
     private EntryMap<K,V>[] entries;
