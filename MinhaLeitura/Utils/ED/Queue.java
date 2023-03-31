@@ -1,6 +1,6 @@
 package Utils.ED;
 
-import Utils.Exceptions.QueueException;
+import Utils.ED.Exceptions.QueueException;
 
 public class Queue <T> implements QueueInterface<T>{
     int size;

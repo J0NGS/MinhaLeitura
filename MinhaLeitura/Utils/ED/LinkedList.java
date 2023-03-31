@@ -1,6 +1,6 @@
 package Utils.ED;
 
-import Utils.Exceptions.ListException;
+import Utils.ED.Exceptions.ListException;
 
 public class LinkedList <T> implements LinkedListInterface <T>{
     private Node<T> head;

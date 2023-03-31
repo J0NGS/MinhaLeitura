@@ -1,4 +1,4 @@
-package Utils.Exceptions;
+package Utils.ED.Exceptions;
 
 public class QueueException extends RuntimeException{
     public QueueException(String message){

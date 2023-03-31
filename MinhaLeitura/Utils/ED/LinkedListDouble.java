@@ -2,7 +2,7 @@ package Utils.ED;
 
 import java.io.Serializable;
 
-import Utils.Exceptions.ListException;
+import Utils.ED.Exceptions.ListException;
 
 public class LinkedListDouble <T> implements LinkedListInterface<T>, Serializable{
 	// Atributos de MyLinkedListSingly
