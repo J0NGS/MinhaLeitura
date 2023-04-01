@@ -11,9 +11,11 @@ public class UserBook {
     private int pagesRead;
     private int rating;
     private String comment;
+    private boolean reading;
 
 
-    public UserBook(Long book, Long user, LocalDate starDate, LocalDate endDate, int pagesRead, int rating, String comment) {
+
+    public UserBook(Long book, Long user, LocalDate starDate, LocalDate endDate, int pagesRead, int rating, String comment, boolean reading) {
         this.book = book;
         this.user = user;
         this.starDate = starDate;
@@ -21,6 +23,7 @@ public class UserBook {
         this.pagesRead = pagesRead;
         this.rating = rating;
         this.comment = comment;
+        this.reading = reading;
     }
 
 
@@ -78,6 +81,16 @@ public class UserBook {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+
+    public boolean isReading() {
+        return this.reading;
+    }
+
+
+    public void setReading(boolean reading) {
+        this.reading = reading;
     }
 
 
