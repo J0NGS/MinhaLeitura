@@ -1,10 +1,11 @@
 package SRC.VO;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import Utils.ED.HashTable;
 
-public class UserReading {
+public class UserReading implements Serializable{
     private Long userId;
     private HashTable<Long, Book> userBooks;
 

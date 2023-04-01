@@ -40,7 +40,5 @@ public class TestBookBinary {
             System.out.println();
         }
 
-        // Deletando o arquivo binário
-        bookHandler.delete();
     }
 }
