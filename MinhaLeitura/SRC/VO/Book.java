@@ -13,6 +13,16 @@ public class Book implements Serializable{
     private String category;
 
 
+    public Book(Long id, String title, String author, String publishe, LocalDate releaseDate, String category) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishe = publishe;
+        this.releaseDate = releaseDate;
+        this.category = category;
+    }
+
+
     public Long getId() {
         return this.id;
     }
