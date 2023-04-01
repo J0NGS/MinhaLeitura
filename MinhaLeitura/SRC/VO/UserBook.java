@@ -1,9 +1,10 @@
 package SRC.VO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class UserBook {
+public class UserBook implements Serializable{
     private Long book;
     private Long user;
     private LocalDate starDate;
