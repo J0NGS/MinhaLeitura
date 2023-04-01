@@ -12,9 +12,9 @@ public class TestUserBookBinary {
         BinaryUserBookHandler handler = new BinaryUserBookHandler("E://Documentos/UFERSA/Disciplinas/ED1/MinhaLeitura/MinhaLeitura/Tests/Bin/UserBookTest.bin");
 
         // Criando instâncias de UserBook
-        UserBook ub1 = new UserBook(1L, 1L, LocalDate.now(), null, 50, 4, "Muito bom", true);
-        UserBook ub2 = new UserBook(2L, 1L, LocalDate.now(), LocalDate.now(), 100, 5, "Excelente", false);
-        UserBook ub3 = new UserBook(3L, 2L, LocalDate.now(), LocalDate.now(), 10, 3, "Regular", false);
+        UserBook ub1 = new UserBook(1L, LocalDate.now(), null, 50, 4, "Muito bom", true);
+        UserBook ub2 = new UserBook(2L, LocalDate.now(), LocalDate.now(), 100, 5, "Excelente", false);
+        UserBook ub3 = new UserBook(3L, LocalDate.now(), LocalDate.now(), 10, 3, "Regular", false);
 
         // Criando a hash table
         HashTable<Long, UserBook> userBooks = new HashTable<>(10);
@@ -38,7 +38,6 @@ public class TestUserBookBinary {
         for (Long i = 1L; i <= readUserBooks.size(); i++) {
         UserBook userBook = readUserBooks.get(i);
         System.out.println("Book: " + userBook.getBook());
-        System.out.println("User: " + userBook.getUser());
         System.out.println("Start date: " + userBook.getStarDate());
         System.out.println("End date: " + userBook.getEndDate());
         System.out.println("Pages read: " + userBook.getPagesRead());

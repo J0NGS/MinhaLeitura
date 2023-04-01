@@ -7,10 +7,10 @@ import Utils.ED.HashTable;
 
 public class UserReading implements Serializable{
     private Long userId;
-    private HashTable<Long, Book> userBooks;
+    private HashTable<Long, UserBook> userBooks;
 
 
-    public UserReading(Long userId, HashTable<Long,Book> userBooks) {
+    public UserReading(Long userId, HashTable<Long,UserBook> userBooks) {
         this.userId = userId;
         this.userBooks = userBooks;
     }
@@ -24,11 +24,11 @@ public class UserReading implements Serializable{
         this.userId = userId;
     }
 
-    public HashTable<Long,Book> getUserBooks() {
+    public HashTable<Long,UserBook> getUserBooks() {
         return this.userBooks;
     }
 
-    public void setUserBooks(HashTable<Long,Book> userBooks) {
+    public void setUserBooks(HashTable<Long,UserBook> userBooks) {
         this.userBooks = userBooks;
     }
 
