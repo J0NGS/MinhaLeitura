@@ -2,6 +2,7 @@ package Utils.BinaryPersisitence;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,14 +16,26 @@ public class BinaryUserHandler {
 
     public BinaryUserHandler(String fileName) {
         this.fileName = fileName;
+        File file = new File(fileName);
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.fileName));
+                out.writeObject(new HashTable<Long, User>());
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void save(HashTable<Long, User> users) {
+    public void save(HashTable<Long, User> users){
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.fileName));
             out.writeObject(users);
             out.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
