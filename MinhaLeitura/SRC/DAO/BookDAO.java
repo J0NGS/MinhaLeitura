@@ -53,6 +53,7 @@ public class BookDAO implements DAOInterface<Book>{
                 throw new UpdateException("Livro não encontrado para essa chave");
             } else {
                 books.put(id, entity);
+                handler.save(books);
             }
             bookRead = books.get(id);
             return bookRead.equals(entity);

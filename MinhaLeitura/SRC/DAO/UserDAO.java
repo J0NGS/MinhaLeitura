@@ -63,6 +63,7 @@ public class UserDAO implements DAOInterface<User>{
                 throw new UpdateException("Nenhum usuário encontrado para essa chave");
             }else{
                 users.put(id, entity);
+                handler.save(users);
             }
             userRead = users.get(id);
             if(userRead.equals(entity)){
@@ -79,6 +80,7 @@ public class UserDAO implements DAOInterface<User>{
         HashTable<Long, User> users = this.handler.read();                  // Inicializa o elemento
         if(users.containsKey(id)){
             users.remove(id);
+            handler.save(users);
             return true;
         } else{
             throw new DeleteException("User não encontrado");
