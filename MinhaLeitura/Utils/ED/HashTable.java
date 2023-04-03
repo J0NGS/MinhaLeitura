@@ -8,6 +8,7 @@ import java.util.Arrays;
 import Utils.ED.Exceptions.HashTableException;
 
 public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
+    private final EntryMap<K, V> TOMBSTONE = new EntryMap<>(null, null);
     private EntryMap<K,V>[] entries;
     private int size;
     private int capacity;
@@ -27,18 +28,15 @@ public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
     public void put(K key, V value) {
         int hash = key.hashCode();
         int index = Math.abs(hash) % entries.length;
-
-        while(entries[index] != null){
-            if(entries[index].getKey().equals(key)){
-                entries[index].setValue(value);
-            }
+    
+        while (entries[index] != null && !entries[index].getKey().equals(key) && !entries[index].getKey().equals(TOMBSTONE)) {
             index = (index + 1) % entries.length;
         }
-
-        entries[index] = new EntryMap<K,V>(key, value);
+    
+        entries[index] = new EntryMap<K, V>(key, value);
         size++;
-
-        if((double) size / entries.length >= 0.75){
+    
+        if ((double) size / entries.length >= 0.75) {
             resize();
         }
     }
@@ -66,18 +64,21 @@ public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
     public void remove(K key) {
         int hash = key.hashCode();
         int index = Math.abs(hash) % entries.length;
-
+        int start = index;
+    
         while (entries[index] != null) {
-            if (entries[index].getKey().equals(key)) {
-                entries[index] = null;
+            if (entries[index].getKey().equals(key) && !entries[index].equals(TOMBSTONE)) {
+                entries[index] = TOMBSTONE;
                 size--;
                 return;
             }
             index = (index + 1) % entries.length;
+            if (index == start) break;
         }
-
+    
         throw new HashTableException("Chave não encontrada");
     }
+    
 
     @Override
     public boolean containsKey(K key) {

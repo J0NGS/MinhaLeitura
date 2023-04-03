@@ -90,6 +90,7 @@ public class UserBook implements Serializable{
     }
 
 
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -98,12 +99,13 @@ public class UserBook implements Serializable{
             return false;
         }
         UserBook userBook = (UserBook) o;
-        return Objects.equals(book, userBook.book) && Objects.equals(user, userBook.user) && Objects.equals(starDate, userBook.starDate) && Objects.equals(endDate, userBook.endDate) && pagesRead == userBook.pagesRead && rating == userBook.rating && Objects.equals(comment, userBook.comment);
+        return Objects.equals(book, userBook.book) && Objects.equals(starDate, userBook.starDate) && Objects.equals(endDate, userBook.endDate) && pagesRead == userBook.pagesRead && rating == userBook.rating && Objects.equals(comment, userBook.comment) && reading == userBook.reading;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(book, user);
+        return Objects.hash(book, starDate, endDate, pagesRead, rating, comment, reading);
     }
+
 
 }
