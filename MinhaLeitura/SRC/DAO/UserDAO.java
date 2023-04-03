@@ -1,11 +1,9 @@
 package SRC.DAO;
 
-import java.io.FileNotFoundException;
-
 import SRC.DAO.Exceptions.DeleteException;
 import SRC.DAO.Exceptions.ReadException;
 import SRC.DAO.Exceptions.UpdateException;
-import SRC.VO.User;
+import SRC.Model.VO.User;
 import Utils.BinaryPersisitence.BinaryUserHandler;
 import Utils.ED.HashTable;
 
@@ -14,7 +12,7 @@ public class UserDAO implements DAOInterface<User>{
 
 
     public UserDAO(){
-        this.handler = new BinaryUserHandler("E://Documentos/UFERSA/Disciplinas/ED1/MinhaLeitura/MinhaLeitura/Tests/Bin/UserDAO.bin");
+        this.handler = new BinaryUserHandler("MinhaLeitura/Tests/Bin/User.bin");
     }
 
     @Override

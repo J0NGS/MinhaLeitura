@@ -2,7 +2,7 @@ package Tests;
 
 import java.time.LocalDate;
 
-import SRC.VO.UserBook;
+import SRC.Model.VO.UserBook;
 import Utils.BinaryPersisitence.BinaryUserBookHandler;
 import Utils.ED.HashTable;
 

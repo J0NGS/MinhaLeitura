@@ -1,4 +1,4 @@
-package SRC.VO;
+package SRC.Model.VO;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,6 +12,8 @@ public class UserBook implements Serializable{
     private int rating;
     private String comment;
     private boolean reading;
+
+    private User user;
 
 
 

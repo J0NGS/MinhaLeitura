@@ -1,6 +1,6 @@
 package Tests;
 
-import SRC.VO.User;
+import SRC.Model.VO.User;
 import Utils.BinaryPersisitence.BinaryUserHandler;
 import Utils.ED.HashTable;
 

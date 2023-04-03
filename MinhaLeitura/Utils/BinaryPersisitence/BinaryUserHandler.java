@@ -2,13 +2,12 @@ package Utils.BinaryPersisitence;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import SRC.VO.User;
+import SRC.Model.VO.User;
 import Utils.ED.HashTable;
 
 public class BinaryUserHandler {

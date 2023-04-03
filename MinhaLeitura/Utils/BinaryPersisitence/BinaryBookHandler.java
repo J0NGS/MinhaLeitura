@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import SRC.VO.Book;
+import SRC.Model.VO.Book;
 import Utils.ED.HashTable;
 
 public class BinaryBookHandler {
