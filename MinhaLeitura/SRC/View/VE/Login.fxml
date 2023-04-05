@@ -18,7 +18,7 @@
             <Image url="@../Images/FundoLogin.png" />
          </image>
       </ImageView>
-      <Button fx:id="entrar" layoutX="439.0" layoutY="517.0" mnemonicParsing="false" onAction="#autenticar" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: #8DB4AD; -fx-background-radius: 30px; -fx-border-color: #000; -fx-border-width: 2px; -fx-border-radius: 30px;" text="Entrar" textAlignment="CENTER">
+      <Button id="botao" fx:id="entrar" layoutX="439.0" layoutY="515.0" mnemonicParsing="false" onAction="#autenticar" prefHeight="30.0" prefWidth="127.0" stylesheets="@../Style/style.css" text="Entrar" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

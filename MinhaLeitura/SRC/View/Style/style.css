@@ -1,0 +1,96 @@
+#botao {
+    -fx-background-color: #fff;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px;
+}
+
+.home{
+    -fx-background-image: url(../Images/homehashtag.png);
+}
+
+.emLeitura{
+    -fx-background-image: url(../Images/book1.png);
+}
+
+.finalizados{
+    -fx-background-image: url(../Images/book.png);
+}
+
+.configuracao{
+    -fx-background-image: url(../Images/setting2.png);
+}
+
+#botao:hover {
+    -fx-background-color: #8DB4AD;
+    -fx-text-fill: #fff;
+}
+
+#botao:hover.home{
+    -fx-background-image: url(../Images/homehashtagWhite.png);
+}
+
+#botao:hover.emLeitura{
+    -fx-background-image: url(../Images/book1White.png);
+}
+
+#botao:hover.finalizados{
+    -fx-background-image: url(../Images/bookWhite.png);
+}
+
+#botao:hover.configuracao{
+    -fx-background-image: url(../Images/setting2White.png);
+}
+
+#botao.ativo.home{
+    -fx-background-color: #026C80;
+    -fx-text-fill: #fff;
+    -fx-background-image: url(../Images/homehashtagWhite.png);
+}
+
+#botao.ativo.emLeitura{
+    -fx-background-color: #026C80;
+    -fx-text-fill: #fff;
+    -fx-background-image: url(../Images/book1White.png);
+}
+
+#botao.ativo.finalizados{
+    -fx-background-color: #026C80;
+    -fx-text-fill: #fff;
+    -fx-background-image: url(../Images/bookWhite.png);
+}
+
+#botao.ativo.configuracao{
+    -fx-background-color: #026C80;
+    -fx-text-fill: #fff;
+    -fx-background-image: url(../Images/setting2White.png);
+}
+
+.pesquisa{
+    -fx-background-color: #fff;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-image: url(../Images/lupa.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.pesquisa:hover {
+    -fx-background-color: #a5acaa;
+}
+
+.sair{
+    -fx-background-color: #fff;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+}
+.sair:hover{
+    -fx-background-color: #ECAE7D !important;
+}
