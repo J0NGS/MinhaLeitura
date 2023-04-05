@@ -18,8 +18,8 @@ public class FrontController {
     private UserDAO usuarioDAO = new UserDAO();
 
     public void autenticar(ActionEvent event) throws Exception{
-        //avisoLogin.setVisible(true);
-        Telas.telaInicial();
+        avisoLogin.setVisible(true);
+        //Telas.telaInicial();
     }
 
     public void fazerCadastro(ActionEvent event) throws Exception{
