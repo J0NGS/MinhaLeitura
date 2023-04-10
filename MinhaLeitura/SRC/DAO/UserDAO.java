@@ -12,11 +12,7 @@ public class UserDAO implements DAOInterface<User>{
 
 
     public UserDAO(){
-<<<<<<< HEAD
-        this.handler = new BinaryUserHandler("MinhaLeitura/Tests/Bin/User.bin");
-=======
         this.handler = new BinaryUserHandler("/home/jota/Documentos/MinhaLeitura/MinhaLeitura/Tests/Bin/UserDAO.bin");
->>>>>>> dfe7fa7b53ef05388f1097b72f735cb418202088
     }
 
     @Override
@@ -27,6 +23,9 @@ public class UserDAO implements DAOInterface<User>{
             users = new HashTable<>();                                      // Inicializa o elemento
         }
 
+        Long id = (long) users.size();
+        id++;
+        entity.setId(id);
         users.put(entity.getId(), entity);
         this.handler.save(users);
 
@@ -40,7 +39,6 @@ public class UserDAO implements DAOInterface<User>{
         }else{
             return false;
         }
-   
     }
 
     @Override
