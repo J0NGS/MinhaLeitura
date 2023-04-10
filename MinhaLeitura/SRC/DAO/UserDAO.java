@@ -25,6 +25,9 @@ public class UserDAO implements DAOInterface<User>{
             users = new HashTable<>();                                      // Inicializa o elemento
         }
 
+        Long id = (long) users.size();
+        id++;
+        entity.setId(id);
         users.put(entity.getId(), entity);
         this.handler.save(users);
 
@@ -38,7 +41,6 @@ public class UserDAO implements DAOInterface<User>{
         }else{
             return false;
         }
-   
     }
 
     @Override
