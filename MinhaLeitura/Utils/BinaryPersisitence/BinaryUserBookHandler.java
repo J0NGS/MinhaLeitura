@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import SRC.VO.Book;
-import SRC.VO.UserBook;
+import SRC.Model.VO.UserBook;
 import Utils.ED.HashTable;
 
 public class BinaryUserBookHandler {

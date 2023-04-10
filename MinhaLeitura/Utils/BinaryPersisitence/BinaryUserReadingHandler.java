@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import SRC.VO.Book;
-import SRC.VO.UserBook;
-import SRC.VO.UserReading;
-import Utils.ED.HashTable;
+import SRC.Model.VO.UserReading;
 
 public class BinaryUserReadingHandler {
     private String fileName;

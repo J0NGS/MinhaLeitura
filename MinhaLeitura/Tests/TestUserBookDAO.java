@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import SRC.DAO.BookDAO;
 import SRC.DAO.UserBookDAO;
 import SRC.DAO.Exceptions.ReadException;
-import SRC.VO.Book;
-import SRC.VO.User;
-import SRC.VO.UserBook;
+import SRC.Model.VO.Book;
+import SRC.Model.VO.User;
+import SRC.Model.VO.UserBook;
 
 public class TestUserBookDAO {
     public static void main(String[] args) {

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import SRC.DAO.BookDAO;
 import SRC.DAO.DAOInterface;
-import SRC.VO.Book;
+import SRC.Model.VO.Book;
 
 public class TestBookDAO {
     public static void main(String[] args) {

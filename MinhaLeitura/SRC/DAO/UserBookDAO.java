@@ -3,7 +3,7 @@ package SRC.DAO;
 import SRC.DAO.Exceptions.DeleteException;
 import SRC.DAO.Exceptions.ReadException;
 import SRC.DAO.Exceptions.UpdateException;
-import SRC.VO.UserBook;
+import SRC.Model.VO.UserBook;
 import Utils.BinaryPersisitence.BinaryUserBookHandler;
 import Utils.ED.HashTable;
 
@@ -11,7 +11,11 @@ public class UserBookDAO implements DAOInterface<UserBook> {
     private BinaryUserBookHandler handler;
 
     public UserBookDAO(){
+<<<<<<< HEAD
+        this.handler = new BinaryUserBookHandler("MinhaLeitura/Tests/Bin/UserBookDAO.bin");
+=======
         this.handler = new BinaryUserBookHandler("/home/jota/Documentos/MinhaLeitura/MinhaLeitura/Tests/Bin/UserBookDAO.bin");
+>>>>>>> dfe7fa7b53ef05388f1097b72f735cb418202088
     }
 
     @Override

@@ -1,7 +1,7 @@
 package Tests;
 
 import SRC.DAO.UserDAO;
-import SRC.VO.User;
+import SRC.Model.VO.User;
 
 public class UserDAOTest {
     public static void main(String[] args) {

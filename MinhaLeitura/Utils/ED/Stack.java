@@ -41,6 +41,7 @@ public class Stack <T> implements StackInterface<T>{
             
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 
