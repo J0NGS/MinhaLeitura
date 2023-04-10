@@ -25,7 +25,18 @@
             <Image url="@../Images/Menssagem.png" />
          </image>
       </ImageView>
-      <Button id="botao" alignment="BASELINE_LEFT" layoutX="31.0" layoutY="142.0" mnemonicParsing="false" onAction="#telaInicial" prefHeight="33.0" prefWidth="202.0" stylesheets="@../Style/style.css" text="         Home">
+      <Button id="botao" alignment="BASELINE_LEFT" layoutX="31.0" layoutY="142.0" mnemonicParsing="false" onAction="#telaInicial" prefHeight="33.0" prefWidth="202.0" styleClass="home" stylesheets="@../Style/style.css" text="         Home">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button id="botao" alignment="BASELINE_LEFT" layoutX="32.0" layoutY="186.0" mnemonicParsing="false" onAction="#telaLeituras" prefHeight="33.0" prefWidth="202.0" stylesheets="@../Style/style.css" text="         Em leitura">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -36,20 +47,9 @@
             <Font size="16.0" />
          </font>
          <styleClass>
+            <String fx:value="emLeitura" />
             <String fx:value="ativo" />
-            <String fx:value="home" />
          </styleClass>
-      </Button>
-      <Button id="botao" alignment="BASELINE_LEFT" layoutX="32.0" layoutY="186.0" mnemonicParsing="false" onAction="#telaLeituras" prefHeight="33.0" prefWidth="202.0" styleClass="emLeitura" stylesheets="@../Style/style.css" text="         Em leitura">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font size="16.0" />
-         </font>
       </Button>
       <Button id="botao" alignment="BASELINE_LEFT" layoutX="32.0" layoutY="230.0" mnemonicParsing="false" onAction="#telaLeiturasFinalizadas" prefHeight="33.0" prefWidth="202.0" styleClass="finalizados" stylesheets="@../Style/style.css" text="         Finalizados">
          <opaqueInsets>
@@ -109,17 +109,17 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ListView fx:id="minhasLeituras" layoutX="266.0" layoutY="163.0" orientation="HORIZONTAL" prefHeight="215.0" prefWidth="490.0" style="-fx-background-color: none;">
+      <ListView fx:id="minhasLeituras" layoutX="266.0" layoutY="131.0" prefHeight="556.0" prefWidth="490.0" style="-fx-background-color: none;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ListView>
-      <Button id="botao" ellipsisString="" layoutX="263.0" layoutY="85.0" mnemonicParsing="false" onAction="#abrirModalAddLeitura" prefHeight="30.0" prefWidth="127.0" stylesheets="@../Style/style.css" text="    Adicionar leitura">
+      <Button id="botao" ellipsisString="" layoutX="634.0" layoutY="96.0" mnemonicParsing="false" onAction="#abrirModalAddLeitura" prefHeight="30.0" prefWidth="127.0" stylesheets="@../Style/style.css" text="    Adicionar leitura">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="269.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="640.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/plus.png" />
          </image>
@@ -132,17 +132,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="265.0" layoutY="127.0" text="MINHAS LEITURAS ATUAIS">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <ListView fx:id="leiturasFinalizadas" layoutX="265.0" layoutY="428.0" orientation="HORIZONTAL" prefHeight="215.0" prefWidth="490.0" style="-fx-background-color: none;">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ListView>
-      <Label layoutX="264.0" layoutY="392.0" text="LEITURAS FINALIZADAS">
+      <Label layoutX="265.0" layoutY="95.0" text="MINHAS LEITURAS ATUAIS">
          <font>
             <Font size="24.0" />
          </font>
