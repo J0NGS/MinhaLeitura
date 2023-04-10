@@ -12,7 +12,11 @@ public class BookDAO implements DAOInterface<Book>{
     private BinaryBookHandler handler;
 
     public BookDAO() {
+<<<<<<< HEAD
         this.handler = new BinaryBookHandler("MinhaLeitura/Tests/Bin/BookDAO.bin");
+=======
+        this.handler = new BinaryBookHandler("/home/jota/Documentos/MinhaLeitura/MinhaLeitura/Tests/Bin/book.bin");
+>>>>>>> dfe7fa7b53ef05388f1097b72f735cb418202088
     }
 
     @Override

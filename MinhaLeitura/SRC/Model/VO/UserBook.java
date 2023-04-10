@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class UserBook implements Serializable{
     private Long book;
+    private Long userId;
     private LocalDate starDate;
     private LocalDate endDate;
     private int pagesRead;
@@ -17,8 +18,9 @@ public class UserBook implements Serializable{
 
 
 
-    public UserBook(Long book, LocalDate starDate, LocalDate endDate, int pagesRead, int rating, String comment, boolean reading) {
+    public UserBook(Long book,Long userId , LocalDate starDate, LocalDate endDate, int pagesRead, int rating, String comment, boolean reading) {
         this.book = book;
+        this.userId = userId;
         this.starDate = starDate;
         this.endDate = endDate;
         this.pagesRead = pagesRead;
@@ -89,6 +91,19 @@ public class UserBook implements Serializable{
 
     public void setReading(boolean reading) {
         this.reading = reading;
+    }
+
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public boolean getReading() {
+        return this.reading;
     }
 
 
