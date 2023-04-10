@@ -14,7 +14,7 @@ public class UserDAO implements DAOInterface<User>{
 
 
     public UserDAO(){
-        this.handler = new BinaryUserHandler("E://Documentos/UFERSA/Disciplinas/ED1/MinhaLeitura/MinhaLeitura/Tests/Bin/UserDAO.bin");
+        this.handler = new BinaryUserHandler("/home/jota/Documentos/MinhaLeitura/MinhaLeitura/Tests/Bin/UserDAO.bin");
     }
 
     @Override
