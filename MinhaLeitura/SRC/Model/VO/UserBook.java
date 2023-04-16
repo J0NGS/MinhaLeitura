@@ -1,3 +1,5 @@
+/*Classe que guarda os valores de Books pertecente ao user*/
+//Autor: João Gonçalo
 package SRC.Model.VO;
 
 import java.io.Serializable;
@@ -5,19 +7,17 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class UserBook implements Serializable{
-    private Long book;
-    private Long userId;
-    private LocalDate starDate;
-    private LocalDate endDate;
-    private int pagesRead;
-    private int rating;
-    private String comment;
-    private boolean reading;
-
-    private User user;
+    private Long book;                  // id do book
+    private Long userId;                // id do user proprietário
+    private LocalDate starDate;         // data de inicio de leitura
+    private LocalDate endDate;          // data de termino de leitura
+    private int pagesRead;              // paginas lidas
+    private int rating;                 // raqueamento (1-5)
+    private String comment;             // comentário
+    private boolean reading;            // se a leitura ainda está ocorrendo
 
 
-
+    // Construtor com todas as classes
     public UserBook(Long book,Long userId , LocalDate starDate, LocalDate endDate, int pagesRead, int rating, String comment, boolean reading) {
         this.book = book;
         this.userId = userId;
@@ -26,14 +26,18 @@ public class UserBook implements Serializable{
         this.pagesRead = pagesRead;
         this.rating = rating;
         this.comment = comment;
-        this.reading = reading;
+        this.reading = reading; 
     }
 
-
+    // construtor sem classes
     public UserBook() {
     }
 
-
+    /*
+     * --------------------------------------------------------------------
+     * Getters e Setters
+     * --------------------------------------------------------------------
+     */ 
     public Long getBook() {
         return this.book;
     }
@@ -41,7 +45,6 @@ public class UserBook implements Serializable{
     public void setBook(Long book) {
         this.book = book;
     }
-
 
     public LocalDate getStarDate() {
         return this.starDate;
@@ -105,9 +108,9 @@ public class UserBook implements Serializable{
     public boolean getReading() {
         return this.reading;
     }
-
-
-
+    // --------------------------------------------------------------------
+    // Equals e Hashcode
+    // --------------------------------------------------------------------
     @Override
     public boolean equals(Object o) {
         if (o == this)

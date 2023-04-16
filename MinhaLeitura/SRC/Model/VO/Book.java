@@ -1,18 +1,23 @@
+/*Classe que guarda os valores do livro*/
+//Autor: João Gonçalo
 package SRC.Model.VO;
+
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
 public class Book implements Serializable{
-    private Long id;
-    private String title;
-    private String author;
-    private String publishe;
-    private LocalDate releaseDate;
-    private String category;
+    private Long id;                    // id
+    private String title;               // titulo do livro
+    private String author;              // autor
+    private String publishe;            // editora
+    private LocalDate releaseDate;      // data de lançamento
+    private String category;            // categoria
 
 
+    // Construtor usando todos os argumentos
     public Book(Long id, String title, String author, String publishe, LocalDate releaseDate, String category) {
         this.id = id;
         this.title = title;
@@ -22,7 +27,11 @@ public class Book implements Serializable{
         this.category = category;
     }
 
-
+    /*
+     * --------------------------------------------------------------------
+     * Getters e Setters
+     * --------------------------------------------------------------------
+     */
     public Long getId() {
         return this.id;
     }
@@ -70,8 +79,8 @@ public class Book implements Serializable{
     public void setCategory(String category) {
         this.category = category;
     }
-
-
+    //--------------------------------------------------------------------
+    // Equals e hashcode
     @Override
     public boolean equals(Object o) {
         if (o == this)

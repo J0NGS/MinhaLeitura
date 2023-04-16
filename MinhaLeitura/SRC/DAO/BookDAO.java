@@ -6,6 +6,7 @@ import SRC.DAO.Exceptions.UpdateException;
 import SRC.Model.VO.Book;
 import Utils.BinaryPersisitence.BinaryBookHandler;
 import Utils.ED.HashTable;
+import Utils.ED.LinkedListDouble;
 
 public class BookDAO implements DAOInterface<Book>{
 
@@ -29,18 +30,32 @@ public class BookDAO implements DAOInterface<Book>{
     }
 
     @Override
-    public Book read(Long id) {
+    public LinkedListDouble<Book> read() {
+        HashTable<Long, Book> books = this.handler.read();
+        if (books == null) {
+            throw new ReadException("Nenhum livro encontrado, lista de livros vazia ou inexistente");
+        } else {
+            LinkedListDouble<Book> bookReturn = new LinkedListDouble<>();
+            for (Long i = 0L; i < books.size(); i++){
+                bookReturn.addLast(books.get(i));
+            }
+            return bookReturn;
+        }
+    }
+
+    public Book readBook(Long id) {
         HashTable<Long, Book> books = this.handler.read();
         if (books == null) {
             throw new ReadException("Nenhum livro encontrado, lista de livros vazia ou inexistente");
         } else {
             Book bookReturn = books.get(id);
-            if (bookReturn == null) {
-                throw new ReadException("Livro não encontrado para essa chave");
+            if(bookReturn == null){
+                throw new ReadException("Nenhum livro encontrado, lista de livros vazia ou inexistente");
             }
             return bookReturn;
         }
     }
+
 
     @Override
     public boolean update(Long id, Book entity) {

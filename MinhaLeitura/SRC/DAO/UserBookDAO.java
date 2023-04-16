@@ -11,11 +11,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
     private BinaryUserBookHandler handler;
 
     public UserBookDAO(){
-<<<<<<< HEAD
-        this.handler = new BinaryUserBookHandler("MinhaLeitura/Tests/Bin/UserBookDAO.bin");
-=======
         this.handler = new BinaryUserBookHandler("/home/jota/Documentos/MinhaLeitura/MinhaLeitura/Tests/Bin/UserBookDAO.bin");
->>>>>>> dfe7fa7b53ef05388f1097b72f735cb418202088
     }
 
     @Override
