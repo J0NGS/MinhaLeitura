@@ -1,10 +1,13 @@
 package SRC.View;
 
+import SRC.Controller.HomeController;
 import SRC.Model.VO.User;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,7 +41,13 @@ public class Telas extends Application {
         primaryStage.setScene(scene);
     }
 
-    public static void telaInicial() throws Exception {
+    public static void telaCadastro() throws Exception {
+        Parent root = FXMLLoader.load(Telas.class.getResource("VE/Cadastro.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+    }
+
+    public static void telaInicial(User usuario) throws Exception {
         Parent root = FXMLLoader.load(Telas.class.getResource("VE/Home.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

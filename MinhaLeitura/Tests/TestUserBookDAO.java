@@ -2,9 +2,8 @@ package Tests;
 
 import java.time.LocalDate;
 
-import SRC.DAO.BookDAO;
-import SRC.DAO.UserBookDAO;
-import SRC.DAO.Exceptions.ReadException;
+import SRC.Model.DAO.UserBookDAO;
+import SRC.Model.DAO.Exceptions.ReadException;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.Model.VO.UserBook;
@@ -19,7 +18,7 @@ public class TestUserBookDAO {
         Book book = new Book(1L,"A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
         
         // Criando um UserBook
-        UserBook userBook = new UserBook(book.getId(), LocalDate.of(2022, 3, 30), null, 0, 0, "Comunismo", true);
+        UserBook userBook = new UserBook(null, book.getId(), LocalDate.of(2022, 3, 30), null, 0, 0, "Comunismo", true);
         
         // Criando o DAO
         UserBookDAO userBookDAO = new UserBookDAO();

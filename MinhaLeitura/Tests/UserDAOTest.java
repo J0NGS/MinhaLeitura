@@ -1,6 +1,6 @@
 package Tests;
 
-import SRC.DAO.UserDAO;
+import SRC.Model.DAO.UserDAO;
 import SRC.Model.VO.User;
 
 public class UserDAOTest {
@@ -23,7 +23,7 @@ public class UserDAOTest {
         }
 
         // Testando o read
-        User userRead = dao.read(2L);
+        User userRead = dao.readUser(2L);
 
         if (userRead != null) {
             System.out.println("Usuário encontrado: " + userRead.getUsername());

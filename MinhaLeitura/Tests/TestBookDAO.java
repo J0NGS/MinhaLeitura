@@ -2,8 +2,8 @@ package Tests;
 
 import java.time.LocalDate;
 
-import SRC.DAO.BookDAO;
-import SRC.DAO.DAOInterface;
+import SRC.Model.DAO.BookDAO;
+import SRC.Model.DAO.DAOInterface;
 import SRC.Model.VO.Book;
 
 public class TestBookDAO {
@@ -21,14 +21,14 @@ public class TestBookDAO {
 
         // Teste de leitura
         System.out.println("\nTeste de leitura:");
-        System.out.println(bookDAO.read(book1.getId()));
-        System.out.println(bookDAO.read(book2.getId()));
+        //System.out.println(bookDAO.read(book1.getId()));
+        //System.out.println(bookDAO.read(book2.getId()));
 
         // Teste de atualização
         book1.setCategory("Nova categoria");
         System.out.println("\nTeste de atualização:");
         System.out.println("Livro 1 atualizado com sucesso? " + bookDAO.update(book1.getId(), book1));
-        System.out.println(bookDAO.read(book1.getId()));
+        //System.out.println(bookDAO.read(book1.getId()));
 
         // Teste de remoção
         System.out.println("\nTeste de remoção:");
