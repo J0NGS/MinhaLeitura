@@ -177,3 +177,11 @@
 .excluirConta:hover {
     -fx-background-color: #a11d0c !important;
 }
+
+.table-view {
+    -fx-background-color: none;
+}
+
+.table-view .column-header{
+    -fx-background-color: none;
+}

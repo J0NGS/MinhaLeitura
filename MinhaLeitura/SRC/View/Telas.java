@@ -74,7 +74,7 @@ public class Telas extends Application {
     public static void modalAddLeitura() throws Exception{
         Stage newStage = new Stage();
         //newStage.initStyle(StageStyle.TRANSPARENT);
-        newStage.setTitle("Nova Leitura");
+        newStage.setTitle("Adicionando uma nova leitura");
 
         newStage.initOwner(Telas.primaryStage);
         newStage.initModality(Modality.APPLICATION_MODAL);

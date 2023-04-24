@@ -46,34 +46,6 @@ public class FrontController {
         Telas.telaCadastro();
     }
 
-    public void cadastrar(ActionEvent event) throws Exception{
-        Telas.telaInicial(usuario);
-    }
-
-    public void sair(ActionEvent event) throws Exception{
-        Telas.telaLogin();
-    }
-
-    public void telaInicial(ActionEvent event) throws  Exception{
-        Telas.telaInicial(usuario);
-    }
-
-    public void telaLeituras(ActionEvent event) throws  Exception{
-        Telas.telaLeituras();
-    }
-
-    public void telaLeiturasFinalizadas(ActionEvent event) throws  Exception{
-        Telas.telaLeiturasFinalizadas();
-    }
-
-    public void telaConfiguracoes(ActionEvent event) throws  Exception{
-        Telas.telaConfiguracoes();
-    }
-
-    public void abrirModalAddLeitura(ActionEvent event) throws  Exception{
-        Telas.modalAddLeitura();
-    }
-
     @FXML
     private Button fecharTela;
     public void fecharModalAddLeitura(ActionEvent event) throws Exception{
