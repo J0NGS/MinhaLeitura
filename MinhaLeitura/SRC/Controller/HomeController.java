@@ -3,13 +3,17 @@ package SRC.Controller;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
+import Utils.InterfaceNewComponents.VBoxBook;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -20,20 +24,12 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     private User usuario;
     @FXML public Label nomeUsuario;
-    @FXML public ListView<Book> minhasLeiturasAtuais;
+    @FXML public ListView<VBoxBook> minhasLeiturasAtuais;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             nomeUsuario.setText(usuario.getUsername());
-            Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
-            List<Book> livros = new ArrayList<>();
-            ObservableList<Book> observableBook;
-            livros.add(livro);
-
-            observableBook = FXCollections.observableArrayList(livros);
-
-            minhasLeiturasAtuais.setItems(observableBook);
             leiturasAtuais();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -66,10 +62,30 @@ public class HomeController implements Initializable {
     }
 
     public void leiturasAtuais() throws Exception{
-        System.out.println("Aqui é onde vai adicionar as leituras");
+        Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        List<VBoxBook> livros = new ArrayList<>();
+        ObservableList<VBoxBook> observableBook;
+        livros.add(new VBoxBook(livro));
+        livro = new Book(1l, "Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        livros.add(new VBoxBook(livro));
+
+        observableBook = FXCollections.observableArrayList(livros);
+
+        minhasLeiturasAtuais.setItems(observableBook);
+        minhasLeiturasAtuais.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
     }
 
     public void abrirModalAddLeitura(ActionEvent event) throws  Exception{
         Telas.modalAddLeitura();
+    }
+
+    private void abrirModalLeitura(ObservableValue<? extends VBoxBook> observable, VBoxBook livroAntigo, VBoxBook livroNovo){
+        VBoxBook livroSelecionado = minhasLeiturasAtuais.getSelectionModel().getSelectedItem();
+
+        try {
+            Telas.modalLeitura(livroSelecionado.getLivro());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
