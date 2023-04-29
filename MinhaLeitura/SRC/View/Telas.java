@@ -1,6 +1,8 @@
 package SRC.View;
 
 import SRC.Controller.HomeController;
+import SRC.Controller.ModalLeituraController;
+import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -74,12 +76,27 @@ public class Telas extends Application {
     public static void modalAddLeitura() throws Exception{
         Stage newStage = new Stage();
         //newStage.initStyle(StageStyle.TRANSPARENT);
-        newStage.setTitle("Nova Leitura");
+        newStage.setTitle("Adicionando uma nova leitura");
 
         newStage.initOwner(Telas.primaryStage);
         newStage.initModality(Modality.APPLICATION_MODAL);
 
         Parent root = FXMLLoader.load(Telas.class.getResource("VE/modalAddLeitura.fxml"));
+        Scene cena = new Scene(root);
+        newStage.setScene(cena);
+        newStage.show();
+    }
+
+    public static void modalLeitura(Book livro) throws Exception{
+        ModalLeituraController.livro = livro;
+        Stage newStage = new Stage();
+        //newStage.initStyle(StageStyle.TRANSPARENT);
+        newStage.setTitle("Minha leitura atual");
+
+        newStage.initOwner(Telas.primaryStage);
+        newStage.initModality(Modality.APPLICATION_MODAL);
+
+        Parent root = FXMLLoader.load(Telas.class.getResource("VE/modalLeitura.fxml"));
         Scene cena = new Scene(root);
         newStage.setScene(cena);
         newStage.show();

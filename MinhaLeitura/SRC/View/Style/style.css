@@ -177,3 +177,76 @@
 .excluirConta:hover {
     -fx-background-color: #a11d0c !important;
 }
+
+
+.list-cell {
+    -fx-text-fill: black; /* 5 */
+}
+
+.list-cell:visited {
+    -fx-text-fill: black !important; /* 5 */
+}
+
+.list-cell:odd {
+    -fx-background-color: none;
+}
+
+.list-cell:even {
+    -fx-background-color: none;
+}
+
+.minhasLeituras .list-cell:filled:odd {
+    -fx-padding: 40px 0 40px 0;
+    -fx-background-image: url(../Images/fundoLivrosLidos2.png);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.minhasLeituras .list-cell:filled:even {
+    -fx-padding: 40px 0 40px 0;
+    -fx-background-image: url(../Images/fundoLivrosLidos2.png);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.minhasLeituras .list-cell:odd {
+    -fx-background-color: none;
+}
+
+.minhasLeituras .list-cell:even {
+    -fx-background-color: none;
+}
+
+.concluirRedondo {
+    -fx-background-color: none;
+    -fx-background-image: url(../Images/botaoOk.png);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-cursor: hand;
+}
+
+.excluirRedondo {
+    -fx-background-color: none;
+    -fx-background-image: url(../Images/botaoClose.png);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-cursor: hand;
+}
+
+.container {
+    -fx-background-image: url(../Images/fundoLivrosLidos.png);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-text-fill: green !important; /* 5 */
+}
+
+
+.tituloLivro:visited {
+    -fx-text-fill: black !important; /* 5 */
+}
+
+.tituloLivro {
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-size: 15px
+}

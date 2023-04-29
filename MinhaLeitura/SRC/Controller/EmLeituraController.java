@@ -3,13 +3,13 @@ package SRC.Controller;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
-import Utils.InterfaceNewComponents.VBoxBook;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -21,25 +21,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable {
+public class EmLeituraController implements Initializable {
+
     private User usuario;
-    @FXML public Label nomeUsuario;
-    @FXML public ListView<VBoxBook> minhasLeiturasAtuais;
+    @FXML
+    public Label nomeUsuario;
+
+    @FXML public ListView<Book> minhasLeituras;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+       nomeUsuario.setText(usuario.getUsername());
         try {
-            nomeUsuario.setText(usuario.getUsername());
             leiturasAtuais();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public HomeController() {
+    public EmLeituraController() {
         usuario = FrontController.getUsuario();
     }
-
 
     public void sair(ActionEvent event) throws Exception{
         Telas.telaLogin();
@@ -61,29 +63,47 @@ public class HomeController implements Initializable {
         Telas.telaConfiguracoes();
     }
 
-    public void leiturasAtuais() throws Exception{
-        Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
-        List<VBoxBook> livros = new ArrayList<>();
-        ObservableList<VBoxBook> observableBook;
-        livros.add(new VBoxBook(livro));
-        livro = new Book(1l, "Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
-        livros.add(new VBoxBook(livro));
-
-        observableBook = FXCollections.observableArrayList(livros);
-
-        minhasLeiturasAtuais.setItems(observableBook);
-        minhasLeiturasAtuais.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
-    }
-
     public void abrirModalAddLeitura(ActionEvent event) throws  Exception{
         Telas.modalAddLeitura();
     }
 
-    private void abrirModalLeitura(ObservableValue<? extends VBoxBook> observable, VBoxBook livroAntigo, VBoxBook livroNovo){
-        VBoxBook livroSelecionado = minhasLeiturasAtuais.getSelectionModel().getSelectedItem();
+    public void leiturasAtuais() throws Exception{
+        Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        List<Book> livros = new ArrayList<>();
+        ObservableList<Book> observableBook;
+        livros.add(livro);
+        livro = new Book(1l, "Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        livros.add(livro);
+
+        minhasLeituras.setCellFactory(new Callback<ListView<Book>, ListCell<Book>>() {
+            @Override
+            public ListCell<Book> call(ListView<Book> bookListView) {
+                ListCell<Book> livroExibido = new ListCell() {
+                    @Override
+                    protected void updateItem(Object o, boolean b) {
+                        super.updateItem(o, b);
+                        Book livro = ((Book) o);
+                        if(livro != null) {
+                            setText(livro.getTitle() + "\n" + livro.getAuthor());
+                        }
+                    }
+                };
+
+                return livroExibido;
+            }
+        });
+
+        observableBook = FXCollections.observableArrayList(livros);
+
+        minhasLeituras.setItems(observableBook);
+        //minhasLeituras.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
+    }
+
+    private void abrirModalLeitura(ObservableValue<? extends Book> observable, Book livroAntigo, Book livroNovo){
+        Book livroSelecionado = minhasLeituras.getSelectionModel().getSelectedItem();
 
         try {
-            Telas.modalLeitura(livroSelecionado.getLivro());
+            Telas.modalLeitura(livroSelecionado);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

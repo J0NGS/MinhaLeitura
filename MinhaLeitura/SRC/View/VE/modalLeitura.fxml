@@ -11,19 +11,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="488.0" style="-fx-background-color: #DDDDDA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SRC.Controller.FrontController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="488.0" style="-fx-background-color: #DDDDDA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SRC.Controller.ModalLeituraController">
    <children>
       <ImageView fitHeight="318.0" fitWidth="466.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/fundoPautado.png" />
          </image>
       </ImageView>
-      <Button fx:id="fecharTela" layoutX="445.0" layoutY="21.0" mnemonicParsing="false" onAction="#fecharModalAddLeitura" prefHeight="24.0" prefWidth="24.0" styleClass="botaoClose" stylesheets="@../Style/style.css">
+      <Button fx:id="fecharTela" layoutX="445.0" layoutY="21.0" mnemonicParsing="false" onAction="#fecharModalLeitura" prefHeight="24.0" prefWidth="24.0" styleClass="botaoClose" stylesheets="@../Style/style.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="64.0" layoutY="22.0" text="Um novo mundo de aventuras é descoberto!">
+      <Label layoutX="170.0" layoutY="22.0" text="Ficha de leitura de:">
          <font>
             <Font size="18.0" />
          </font>
@@ -33,25 +33,25 @@
             <Image url="@../Images/tag.png" />
          </image>
       </ImageView>
-      <TextField layoutX="20.0" layoutY="75.0" prefHeight="29.0" prefWidth="446.0" styleClass="textField" stylesheets="@../Style/style.css" />
+      <TextField fx:id="titulo" layoutX="20.0" layoutY="75.0" prefHeight="29.0" prefWidth="446.0" styleClass="textField" stylesheets="@../Style/style.css" />
       <ImageView fitHeight="29.0" fitWidth="68.0" layoutX="32.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/tag.png" />
          </image>
       </ImageView>
-      <TextField layoutX="20.0" layoutY="132.0" prefHeight="29.0" prefWidth="219.0" styleClass="textField" stylesheets="@../Style/style.css" />
+      <TextField fx:id="autor" layoutX="20.0" layoutY="132.0" prefHeight="29.0" prefWidth="219.0" styleClass="textField" stylesheets="@../Style/style.css" />
       <ImageView fitHeight="35.0" fitWidth="80.0" layoutX="32.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/tag.png" />
          </image>
       </ImageView>
-      <TextField alignment="TOP_LEFT" layoutX="20.0" layoutY="190.0" prefHeight="130.0" prefWidth="262.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="textField" stylesheets="@../Style/style.css" />
+      <TextField fx:id="descricao" alignment="TOP_LEFT" layoutX="20.0" layoutY="190.0" prefHeight="92.0" prefWidth="446.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="textField" stylesheets="@../Style/style.css" />
       <ImageView fitHeight="29.0" fitWidth="68.0" layoutX="258.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/tag.png" />
          </image>
       </ImageView>
-      <SplitMenuButton contentDisplay="CENTER" layoutX="246.0" layoutY="132.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="219.0" stylesheets="@../Style/style.css" wrapText="true">
+      <SplitMenuButton fx:id="genero" contentDisplay="CENTER" layoutX="246.0" layoutY="132.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="219.0" stylesheets="@../Style/style.css" wrapText="true">
         <items>
           <MenuItem mnemonicParsing="false" text="Aventura" />
           <MenuItem mnemonicParsing="false" text="Fantasia" />
@@ -81,6 +81,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button id="botao" layoutX="357.0" layoutY="290.0" mnemonicParsing="false" prefHeight="29.33" prefWidth="109.73" styleClass="concluir" stylesheets="@../Style/style.css" text="      Cadastrar" />
+      <Button id="botao" layoutX="357.0" layoutY="290.0" mnemonicParsing="false" prefHeight="29.33" prefWidth="109.73" styleClass="concluir" stylesheets="@../Style/style.css" text="      Concluir" />
+      <Button id="botao" layoutX="239.0" layoutY="290.0" mnemonicParsing="false" prefHeight="29.33" prefWidth="109.73" styleClass="editar" stylesheets="@../Style/style.css" text="      Editar" />
+      <Button id="botao" layoutX="121.0" layoutY="290.0" mnemonicParsing="false" prefHeight="29.33" prefWidth="109.73" styleClass="excluir" stylesheets="@../Style/style.css" text="      Excluir" />
    </children>
 </Pane>
