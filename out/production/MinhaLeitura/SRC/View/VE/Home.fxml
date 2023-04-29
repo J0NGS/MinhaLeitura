@@ -145,12 +145,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ListView fx:id="leiturasFinalizadas" layoutX="265.0" layoutY="428.0" orientation="HORIZONTAL" prefHeight="215.0" prefWidth="490.0" style="-fx-background-color: none;">
+      <ListView fx:id="leiturasFinalizadas" layoutX="265.0" layoutY="442.0" orientation="HORIZONTAL" prefHeight="244.0" prefWidth="490.0" style="-fx-background-color: none;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ListView>
-      <Label layoutX="264.0" layoutY="392.0" text="LEITURAS FINALIZADAS">
+      <Label layoutX="264.0" layoutY="406.0" text="LEITURAS FINALIZADAS">
          <font>
             <Font size="24.0" />
          </font>

@@ -1,7 +1,6 @@
 package Utils.InterfaceNewComponents;
 
 import SRC.Model.VO.Book;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,7 +8,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javax.swing.text.Position;
 
 public class VBoxBook extends VBox {
     Label titulo = new Label();

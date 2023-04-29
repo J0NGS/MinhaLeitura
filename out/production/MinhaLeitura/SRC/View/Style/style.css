@@ -250,3 +250,9 @@
     -fx-alignment: center;
     -fx-font-size: 15px
 }
+
+.containerFinalizados {
+    -fx-background-image: url(../Images/fundoLivroLido.png);
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
