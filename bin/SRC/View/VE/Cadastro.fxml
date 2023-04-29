@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1020.0" style="-fx-background-color: #DDDDDA;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SRC.Controller.CadastroController">
+   <children>
+      <ImageView fitHeight="710.0" fitWidth="993.0" layoutX="13.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/fundoCadastro.png" />
+         </image>
+      </ImageView>
+      <Button id="botao" fx:id="cadastrar" layoutX="441.0" layoutY="541.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="30.0" prefWidth="127.0" stylesheets="@../Style/style.css" text="Cadastrar" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="46.0" fitWidth="117.0" layoutX="445.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Titulo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="421.0" layoutY="145.0" text="Organizador de leituras">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="avisoLogin" layoutX="408.0" layoutY="319.0" text="&lt; Login ou senha incorretos &gt;" textFill="#e10000" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="33.0" fitWidth="83.0" layoutX="372.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/tag.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="nome" layoutX="357.0" layoutY="235.0" prefHeight="44.0" prefWidth="288.8" promptText="Ex Anna" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="33.0" fitWidth="83.0" layoutX="372.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/tag.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="396.0" layoutY="293.0" text="CPF" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cpf" layoutX="359.0" layoutY="317.0" prefHeight="44.0" prefWidth="288.8" promptText="000.000.000-00" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="389.0" layoutY="209.0" text="Nome" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="33.0" fitWidth="83.0" layoutX="372.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/tag.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="391.0" layoutY="375.0" text="Email" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="email" layoutX="357.0" layoutY="399.0" prefHeight="44.0" prefWidth="288.8" promptText="--------@------.com" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="33.0" fitWidth="83.0" layoutX="373.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/tag.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="388.0" layoutY="458.0" text="Senha" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="password" layoutX="357.0" layoutY="482.0" prefHeight="44.0" prefWidth="288.8" promptText="********" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </PasswordField>
+   </children>
+</Pane>
