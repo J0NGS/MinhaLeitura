@@ -11,6 +11,8 @@ public class User implements Serializable{
     private String password;        // senha
     private String email;           // email
     private String name;            // nome
+    private String cpf;             // cpf
+
 
     // Construtor com todas os atributos
     public User(Long id, String username, String password){
@@ -71,6 +73,14 @@ public class User implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     //--------------------------------------------------------------------

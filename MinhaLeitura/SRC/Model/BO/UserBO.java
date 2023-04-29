@@ -30,11 +30,8 @@ public class UserBO {
     try {
         if(id == null || id < 1){
             throw new ReadException("Id Inválido");
-        }
-        
-        User user = dao.readUser(id);
-        return user;
-
+        }        
+        return dao.readUser(id);
     } catch (Exception e) {
         e.printStackTrace();
         return null;
