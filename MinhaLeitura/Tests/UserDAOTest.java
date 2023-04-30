@@ -7,9 +7,9 @@ public class UserDAOTest {
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
 
-        User user1 = new User(1L, "John", "john@mail.com");
-        User user2 = new User(2L, "Mary", "mary@mail.com");
-        User user3 = new User(3L, "Bob", "bob@mail.com");
+        User user1 = new User("John", "12345","john@mail.com", "jhon textor");
+        User user2 = new User("Mary","420", "mary@mail.com","Mary Joan");
+        User user3 = new User("Bob","Belove" ,"bob@mail.com", "Bob Marley");
 
         // Testando o create
         boolean resultCreate1 = dao.create(user1);
@@ -33,7 +33,7 @@ public class UserDAOTest {
 
         // Testando o update
         System.out.println("Usuário antes do update " + user1.getUsername() );
-        User userUpdate = new User(1L, "Jonathan", "jonathan@mail.com");
+        User userUpdate = new User("Jonathan", "1010","jonathan@mail.com", "João Nathan");
         boolean resultUpdate = dao.update(1L, userUpdate);
 
         if (resultUpdate) {
@@ -41,6 +41,17 @@ public class UserDAOTest {
         } else {
             System.out.println("Houve um erro ao atualizar o usuário.");
         }
+
+
+        //Testando findByName
+        String username = "Bob";
+        userUpdate = dao.listByUsername(username);
+        System.out.println("Usuário encontrado com sucesso. " + userUpdate.getName());
+
+        //Testando findByName
+        String email = "mary@mail.com";
+        userUpdate = dao.listByEmail(email);
+        System.out.println("Usuário encontrado com sucesso. " + userUpdate.getName());
 
         // Testando o delete
         boolean resultDelete = dao.delete(3L);
