@@ -8,9 +8,13 @@ import Utils.ED.LinkedListDouble;
 
 public class UserBO {
    UserDAO dao = new UserDAO();
-
-   public void createUser(String username, String password){
+/**
+ * Função para cadastrar o usuário
+ */
+   public void createUser(String username, String password, String email, String name){
     try {
+
+        //verificando conteudo dos paramentros
         if(username == null || username.isEmpty()){
             throw new CreateException("Usuário inválido");
         }
@@ -19,6 +23,7 @@ public class UserBO {
             throw new CreateException("Password inválido");
         }
     
+        //instancia um novo usuário e persiste
         User user = new User(null, username, password);
         dao.create(user);
     } catch (Exception e) {

@@ -13,19 +13,27 @@ public class User implements Serializable{
     private String name;            // nome
 
     // Construtor com todas os atributos
-    public User(Long id, String username, String password){
+    public User(Long id, String username, String password, String email, String name){
         this.id = id;
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.name = name;
     }
 
     // Construtor com dois atributos
-    public User(String username, String password){
+    public User(String username, String password, String email, String name){
         this.id = 0L;
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.name = name;
     }
 
+
+    public User() {
+    }
+    
 
     /*
      * --------------------------------------------------------------------

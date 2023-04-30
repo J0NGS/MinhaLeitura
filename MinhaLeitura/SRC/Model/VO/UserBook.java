@@ -3,14 +3,14 @@
 package SRC.Model.VO;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class UserBook implements Serializable{
     private Long book;                  // id do book
     private Long userId;                // id do user proprietário
-    private LocalDate starDate;         // data de inicio de leitura
-    private LocalDate endDate;          // data de termino de leitura
+    private LocalDateTime starDate;     // data de inicio de leitura
+    private LocalDateTime endDate;      // data de termino de leitura
     private int pagesRead;              // paginas lidas
     private int rating;                 // raqueamento (1-5)
     private String comment;             // comentário
@@ -18,7 +18,7 @@ public class UserBook implements Serializable{
 
 
     // Construtor com todas as classes
-    public UserBook(Long book,Long userId , LocalDate starDate, LocalDate endDate, int pagesRead, int rating, String comment, boolean reading) {
+    public UserBook(Long book,Long userId , LocalDateTime starDate, LocalDateTime endDate, int pagesRead, int rating, String comment, boolean reading) {
         this.book = book;
         this.userId = userId;
         this.starDate = starDate;
