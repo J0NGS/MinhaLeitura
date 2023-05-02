@@ -195,20 +195,6 @@
     -fx-background-color: none;
 }
 
-.minhasLeituras .list-cell:filled:odd {
-    -fx-padding: 40px 0 40px 0;
-    -fx-background-image: url(../Images/fundoLivrosLidos2.png);
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-}
-
-.minhasLeituras .list-cell:filled:even {
-    -fx-padding: 40px 0 40px 0;
-    -fx-background-image: url(../Images/fundoLivrosLidos2.png);
-    -fx-background-position: center;
-    -fx-background-repeat: no-repeat;
-}
-
 .minhasLeituras .list-cell:odd {
     -fx-background-color: none;
 }
@@ -247,7 +233,7 @@
 
 .tituloLivro {
     -fx-font-weight: bold;
-    -fx-alignment: center;
+    
     -fx-font-size: 15px
 }
 
@@ -255,4 +241,63 @@
     -fx-background-image: url(../Images/fundoLivroLido.png);
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
+}
+
+.containerEmLeitura {
+    -fx-background-color: #fff;
+    -fx-background-radius: 14px;
+    -fx-border-color: #000;
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px; 
+}
+
+.excluirLeitura {
+    -fx-background-image: url(../Images/botaoClose.png);
+    -fx-background-color: #fff;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+}
+
+.excluirLeitura:hover {
+    -fx-background-color: #a5acaa;
+    -fx-text-fill: #fff;
+    -fx-border-color: #000 !important;
+}
+
+.editarLeitura {
+    -fx-background-image: url(../Images/botaoEdit.png);
+    -fx-background-color: #fff;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+}
+
+.editarLeitura:hover {
+    -fx-background-color: #a5acaa;
+    -fx-text-fill: #fff;
+    -fx-border-color: #000 !important;
+}
+
+.concluirLeitura {
+    -fx-background-image: url(../Images/botaoOk.png);
+    -fx-background-color: #fff;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 5px;
+}
+
+.concluirLeitura:hover {
+    -fx-background-color: #a5acaa;
+    -fx-text-fill: #fff;
+    -fx-border-color: #000 !important;
 }

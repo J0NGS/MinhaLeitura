@@ -90,12 +90,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="nomeUsuario" layoutX="783.0" layoutY="41.0" prefHeight="33.0" prefWidth="141.0" text="Nome teste" wrapText="true">
+      <Label fx:id="nomeUsuario" alignment="CENTER" layoutX="783.0" layoutY="41.0" prefHeight="33.0" prefWidth="141.0" text="Nome teste" wrapText="true">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="798.0" layoutY="73.0" prefHeight="17.0" prefWidth="121.0" text="teste@email.com">
+      <Label alignment="CENTER" layoutX="798.0" layoutY="73.0" prefHeight="17.0" prefWidth="121.0" text="teste@email.com">
          <font>
             <Font size="14.0" />
          </font>
@@ -113,7 +113,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ListView fx:id="minhasLeituras" layoutX="264.0" layoutY="131.0" prefHeight="556.0" prefWidth="495.0" style="-fx-background-color: none;" styleClass="minhasLeituras" stylesheets="@../Style/style.css">
+      <ListView fx:id="minhasLeituras" layoutX="256.0" layoutY="131.0" prefHeight="556.0" prefWidth="503.0" style="-fx-background-color: none;" styleClass="minhasLeituras" stylesheets="@../Style/style.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -151,12 +151,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="emLeitura" layoutX="870.0" layoutY="225.0" text="0" textFill="WHITE">
+      <Label fx:id="emLeitura" alignment="CENTER" layoutX="870.0" layoutY="225.0" text="0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Label fx:id="livrosLidos" layoutX="873.0" layoutY="360.0" text="0" textFill="WHITE">
+      <Label fx:id="livrosLidos" alignment="CENTER" layoutX="873.0" layoutY="360.0" text="0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>

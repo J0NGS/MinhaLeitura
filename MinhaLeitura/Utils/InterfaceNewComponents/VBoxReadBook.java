@@ -38,6 +38,7 @@ public class VBoxReadBook extends VBox {
         titulo.getStyleClass().add("tituloLivro");
         titulo.setMinWidth(150);
         titulo.setMaxWidth(150);
+        titulo.setAlignment(Pos.CENTER);
         titulo.setText(livro.getTitle());
         titulo.setTranslateY(-5);
 

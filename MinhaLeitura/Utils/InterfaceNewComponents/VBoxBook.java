@@ -26,6 +26,7 @@ public class VBoxBook extends VBox {
         titulo.getStyleClass().add("tituloLivro");
         titulo.setMinWidth(150);
         titulo.setMaxWidth(150);
+        titulo.setAlignment(Pos.CENTER);
         autor.getStyleClass().add("autorLivro");
         concluir.getStyleClass().add("concluirRedondo");
         concluir.setMinWidth(24.0);
