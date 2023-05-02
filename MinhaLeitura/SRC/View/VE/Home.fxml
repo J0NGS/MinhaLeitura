@@ -96,7 +96,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="798.0" layoutY="73.0" prefHeight="17.0" prefWidth="121.0" text="teste@email.com">
+      <Label fx:id="email" alignment="CENTER" layoutX="798.0" layoutY="73.0" prefHeight="17.0" prefWidth="121.0" text="teste@email.com">
          <font>
             <Font size="14.0" />
          </font>
@@ -145,12 +145,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ListView fx:id="leiturasFinalizadas" layoutX="265.0" layoutY="428.0" orientation="HORIZONTAL" prefHeight="215.0" prefWidth="490.0" style="-fx-background-color: none;">
+      <ListView fx:id="leiturasFinalizadas" layoutX="265.0" layoutY="442.0" orientation="HORIZONTAL" prefHeight="244.0" prefWidth="490.0" style="-fx-background-color: none;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ListView>
-      <Label layoutX="264.0" layoutY="392.0" text="LEITURAS FINALIZADAS">
+      <Label layoutX="264.0" layoutY="406.0" text="LEITURAS FINALIZADAS">
          <font>
             <Font size="24.0" />
          </font>

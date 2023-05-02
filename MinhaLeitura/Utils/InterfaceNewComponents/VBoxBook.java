@@ -1,7 +1,6 @@
 package Utils.InterfaceNewComponents;
 
 import SRC.Model.VO.Book;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,7 +8,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import javax.swing.text.Position;
 
 public class VBoxBook extends VBox {
     Label titulo = new Label();
@@ -28,6 +26,7 @@ public class VBoxBook extends VBox {
         titulo.getStyleClass().add("tituloLivro");
         titulo.setMinWidth(150);
         titulo.setMaxWidth(150);
+        titulo.setAlignment(Pos.CENTER);
         autor.getStyleClass().add("autorLivro");
         concluir.getStyleClass().add("concluirRedondo");
         concluir.setMinWidth(24.0);
