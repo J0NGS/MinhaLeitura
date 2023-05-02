@@ -27,7 +27,7 @@ public class FrontController {
     }
 
     public void setUsuario(User usuario) {
-        this.usuario = new User(usuario.getId(), usuario.getUsername(), usuario.getPassword());
+        this.usuario = new User(usuario.getId(), usuario.getUsername(), usuario.getPassword(), "teste", "teste");
     }
 
     private UserDAO usuarioDAO = new UserDAO();
@@ -36,7 +36,7 @@ public class FrontController {
         if (username.getText().isEmpty() && password.getText().isEmpty()){
             avisoLogin.setVisible(true);
         }else{
-            usuario = new User(1l, username.getText(), password.getText());
+            usuario = new User(1l, username.getText(), password.getText(), "Teste", "teste");
             Telas.telaInicial(usuario);
         }
 

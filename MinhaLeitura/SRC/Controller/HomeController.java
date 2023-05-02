@@ -62,11 +62,11 @@ public class HomeController implements Initializable {
     }
 
     public void leiturasAtuais() throws Exception{
-        Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        Book livro = new Book("Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
         List<VBoxBook> livros = new ArrayList<>();
         ObservableList<VBoxBook> observableBook;
         livros.add(new VBoxBook(livro));
-        livro = new Book(1l, "Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        livro = new Book("Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
         livros.add(new VBoxBook(livro));
 
         observableBook = FXCollections.observableArrayList(livros);

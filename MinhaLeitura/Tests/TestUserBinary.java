@@ -8,9 +8,9 @@ public class TestUserBinary {
     public static void main(String[] args) {
 
         // Criando alguns objetos de usuário
-        User user1 = new User(0L, "joao@example.com", "123456");
-        User user2 = new User(1L, "maria@example.com", "654321");
-        User user3 = new User(2L, "pedro@example.com", "987654");
+        User user1 = new User("João", "123456","joao@example.com","teste");
+        User user2 = new User("Maria", "654321","maria@example.com","teste");
+        User user3 = new User("Pedro", "987654","pedro@example.com","teste");
 
         // Criando uma HashTable de usuários
         HashTable<Long, User> users = new HashTable<>();

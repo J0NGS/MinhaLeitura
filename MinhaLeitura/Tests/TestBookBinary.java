@@ -9,9 +9,9 @@ import Utils.ED.HashTable;
 public class TestBookBinary {
     public static void main(String[] args) {
         // Criação de alguns livros
-        Book book1 = new Book(1L, "Harry Potter and the Philosopher's Stone", "J.K. Rowling", "Bloomsbury Publishing", LocalDate.of(1997, 6, 26), "Fantasy");
-        Book book2 = new Book(2L, "The Hobbit", "J.R.R. Tolkien", "Allen & Unwin", LocalDate.of(1937, 9, 21), "Fantasy");
-        Book book3 = new Book(3L, "1984", "George Orwell", "Secker & Warburg", LocalDate.of(1949, 6, 8), "Dystopian Fiction");
+        Book book1 = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "Bloomsbury Publishing", LocalDate.of(1997, 6, 26), "Fantasy");
+        Book book2 = new Book("The Hobbit", "J.R.R. Tolkien", "Allen & Unwin", LocalDate.of(1937, 9, 21), "Fantasy");
+        Book book3 = new Book("1984", "George Orwell", "Secker & Warburg", LocalDate.of(1949, 6, 8), "Dystopian Fiction");
 
         // Criação de uma hash table e adição dos livros
         HashTable<Long, Book> books = new HashTable<>(10);

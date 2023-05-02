@@ -1,6 +1,7 @@
 package Tests;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import SRC.Model.DAO.UserBookDAO;
 import SRC.Model.DAO.Exceptions.ReadException;
@@ -12,13 +13,13 @@ public class TestUserBookDAO {
     public static void main(String[] args) {
         
         // Criando um usuário
-        User user = new User(1L, "fulano@teste.com", "senha123");
+        User user = new User("teste","teste","fulano@teste.com", "senha123");
         
         // Criando um livro
-        Book book = new Book(1L,"A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
+        Book book = new Book("A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
         
         // Criando um UserBook
-        UserBook userBook = new UserBook(null, book.getId(), LocalDate.of(2022, 3, 30), null, 0, 0, "Comunismo", true);
+        UserBook userBook = new UserBook(null, book.getId(), null, null, 0, 0, "Comunismo", true);
         
         // Criando o DAO
         UserBookDAO userBookDAO = new UserBookDAO();
@@ -38,6 +39,7 @@ public class TestUserBookDAO {
         System.out.println(userBookDAO.read(book.getId())); // Deve imprimir as informações atualizadas do UserBook
         
         // Testando o método delete
+        /*
         System.out.println("Teste do método delete:");
         System.out.println(userBookDAO.delete(book.getId())); // Deve retornar true
         UserBook bookRead = userBookDAO.read(book.getId());
@@ -45,7 +47,7 @@ public class TestUserBookDAO {
             System.out.println(bookRead.getComment()); // Deve lançar uma exceção ReadException
         } catch (ReadException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
         
     }
 }

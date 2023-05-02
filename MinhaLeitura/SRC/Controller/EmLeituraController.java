@@ -68,11 +68,11 @@ public class EmLeituraController implements Initializable {
     }
 
     public void leiturasAtuais() throws Exception{
-        Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        Book livro = new Book("Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
         List<Book> livros = new ArrayList<>();
         ObservableList<Book> observableBook;
         livros.add(livro);
-        livro = new Book(1l, "Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        livro = new Book("Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
         livros.add(livro);
 
         minhasLeituras.setCellFactory(new Callback<ListView<Book>, ListCell<Book>>() {
