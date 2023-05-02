@@ -1,3 +1,7 @@
+/**
+ * Classe para representar a camada de persistencia de dados em binário para user
+ * @author João Gonçalo
+ */
 package SRC.Model.DAO;
 
 import SRC.Model.DAO.Exceptions.DeleteException;
@@ -8,9 +12,7 @@ import Utils.BinaryPersisitence.BinaryUserHandler;
 import Utils.ED.HashTable;
 import Utils.ED.LinkedListDouble;
 
-/**
- * Classe para representar a camada de persistencia de dados em binário
- */
+
 public class UserDAO implements DAOInterface<User>{
     private BinaryUserHandler handler;
 

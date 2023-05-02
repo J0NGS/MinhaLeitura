@@ -35,9 +35,10 @@ public class UserDAOTest {
         System.out.println("Usuário antes do update " + user1.getUsername() );
         User userUpdate = new User("Jonathan", "1010","jonathan@mail.com", "João Nathan");
         boolean resultUpdate = dao.update(1L, userUpdate);
-
+        User test = dao.readUser(1L);
         if (resultUpdate) {
             System.out.println("Usuário atualizado com sucesso. " + userUpdate.getUsername());
+            System.out.println("Usuário atualizado com sucesso. " + test.getUsername());
         } else {
             System.out.println("Houve um erro ao atualizar o usuário.");
         }

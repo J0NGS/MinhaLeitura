@@ -10,16 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-/**
-* Construtor que recebe todos os argumentos necessários para criar um objeto Book.
-* 
-* @param id ID do livro
-* @param title Título do livro
-* @param author Autor do livro
-* @param publishe Editora do livro
-* @param releaseDate Data de lançamento do livro
-* @param category Categoria do livro
-*/
+
 public class Book implements Serializable{
     private Long id;                    // id
     private String title;               // titulo do livro
@@ -28,9 +19,17 @@ public class Book implements Serializable{
     private LocalDate releaseDate;      // data de lançamento
     private String category;            // categoria
 
-
-    // Construtor usando todos os argumentos
-    public Book(Long id, String title, String author, String publishe, LocalDate releaseDate, String category) {
+    /**
+    * Construtor que recebe todos os argumentos necessários para criar um objeto Book.
+    * 
+    * @param id ID do livro
+    * @param title Título do livro
+    * @param author Autor do livro
+    * @param publishe Editora do livro
+    * @param releaseDate Data de lançamento do livro
+    * @param category Categoria do livro
+    */
+    public Book(String title, String author, String publishe, LocalDate releaseDate, String category) {
         this.id = id;
         this.title = title;
         this.author = author;

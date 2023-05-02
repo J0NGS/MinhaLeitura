@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class UserBook implements Serializable{
+    private Long id;                    // id do userBook
     private Long book;                  // id do book
     private Long userId;                // id do user proprietário
     private LocalDateTime starDate;     // data de inicio de leitura
@@ -19,6 +20,7 @@ public class UserBook implements Serializable{
 
     // Construtor com todas as classes
     public UserBook(Long book,Long userId , LocalDateTime starDate, LocalDateTime endDate, int pagesRead, int rating, String comment, boolean reading) {
+        this.id = null;
         this.book = book;
         this.userId = userId;
         this.starDate = starDate;
@@ -46,19 +48,19 @@ public class UserBook implements Serializable{
         this.book = book;
     }
 
-    public LocalDate getStarDate() {
+    public LocalDateTime getStarDate() {
         return this.starDate;
     }
 
-    public void setStarDate(LocalDate starDate) {
+    public void setStarDate(LocalDateTime starDate) {
         this.starDate = starDate;
     }
 
-    public LocalDate getEndDate() {
+    public LocalDateTime getEndDate() {
         return this.endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -84,6 +86,14 @@ public class UserBook implements Serializable{
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 

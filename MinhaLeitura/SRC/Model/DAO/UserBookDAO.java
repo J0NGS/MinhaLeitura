@@ -12,7 +12,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
     private BinaryUserBookHandler handler;
 
     public UserBookDAO(){
-        this.handler = new BinaryUserBookHandler("/home/jota/Documentos/MinhaLeitura/MinhaLeitura/Tests/Bin/UserBookDAO.bin");
+        this.handler = new BinaryUserBookHandler("MinhaLeitura/Tests/Bin/UserBookDAO.bin");
     }
 
     @Override
@@ -23,6 +23,10 @@ public class UserBookDAO implements DAOInterface<UserBook> {
             userBooks = new HashTable<>();
         }
 
+        //Setando id
+        Long id = (long) userBooks.size();
+        id++;
+        entity.setId(id);
         userBooks.put(entity.getBook(), entity);
         this.handler.save(userBooks);
 
@@ -43,16 +47,35 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         return null;
     }
 
-    public UserBook read(Long id) {
+    public LinkedListDouble<UserBook> read(Long id) {
         HashTable<Long, UserBook> userBooks = this.handler.read();
         if(userBooks == null){
-            throw new ReadException("Nenhum livro encontrado, lista de livros vazia ou inexistente");
+            throw new ReadException("Nenhum userBook encontrado, lista de userBook vazia ou inexistente");
+        }else{
+            LinkedListDouble<UserBook> userBookReturn = new LinkedListDouble<>();
+            for(Long i = 1L; i < userBooks.size(); i++){
+                userBookReturn.addLast(userBooks.get(id));
+            }
+            return userBookReturn;
         }
-        UserBook bookReturn = userBooks.get(id);
-        if(bookReturn == null){
-            throw new ReadException("Livro não encontrado");
+    }
+
+    /**
+     * Função que ler um UserBook específico no arquivo a partir do id
+     * @param id id do UserBook
+     * @return UserBook do id indicado
+     */
+    public UserBook readBook(Long id) {
+        HashTable<Long, UserBook> books = this.handler.read();
+        if (books == null) {
+            throw new ReadException("Nenhum UserBook encontrado, lista de livros vazia ou inexistente");
+        } else {
+            UserBook bookReturn = books.get(id);
+            if(bookReturn == null){
+                throw new ReadException("Nenhum UserBook encontrado, lista de UserBook vazia ou inexistente");
+            }
+            return bookReturn;
         }
-        return bookReturn;
     }
 
     @Override
@@ -65,11 +88,12 @@ public class UserBookDAO implements DAOInterface<UserBook> {
             if(bookRead == null){
                 throw new UpdateException("Nenhum livro encontrado para essa chave");
             }else{
+                entity.setId(id);
                 userBooks.put(id, entity);
                 handler.save(userBooks);
             }
             bookRead = userBooks.get(id);
-            if(bookRead.equals(entity)){
+            if(bookRead.equals(entity) && bookRead.getId() == id){
                 return true;
             }else{
                 return false;
