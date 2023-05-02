@@ -5,6 +5,7 @@ import SRC.Model.DAO.Exceptions.CreateException;
 import SRC.Model.DAO.Exceptions.ReadException;
 import SRC.Model.VO.User;
 import Utils.ED.LinkedListDouble;
+import Utils.ED.Exceptions.ListException;
 
 public class UserBO {
    UserDAO dao = new UserDAO();
@@ -22,9 +23,16 @@ public class UserBO {
         if(password == null || password.isEmpty()){
             throw new CreateException("Password inválido");
         }
-    
+
+        if(email == null || email.isEmpty() || !email.contains("@")){
+            throw new CreateException("Email inválido");
+        }
+
+        if(name == null || name.isEmpty()){
+            throw new CreateException("Nome inválido");
+        }
         //instancia um novo usuário e persiste
-        User user = new User(null, username, password);
+        User user = new User(username, password, email, name);
         dao.create(user);
     } catch (Exception e) {
         e.printStackTrace();
@@ -57,16 +65,16 @@ public class UserBO {
             throw new CreateException("Password inválido");
         }
         
-        LinkedListDouble<User> users = new LinkedListDouble<>();
-        users = dao.read();
-        User user = new User(username, password);
-        User userRead = users.search(user);
-        
-
+        User users = dao.listByUsername(username);
+        if(users.getPassword().equals(password)){
+            authenticate = true;}
+        else{
+            throw new ReadException("password incorreto");
+        }
+        return authenticate;
     } catch (Exception e) {
         e.printStackTrace();
         return authenticate;
     }
-    return false;
   }
 }
