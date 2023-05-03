@@ -136,6 +136,9 @@ public class UserDAO implements DAOInterface<User>{
                 users.removeFirst();
             }
         }
+        if(result == null){
+            throw new ReadException("Usuário não encontrado");
+        }
         return result;
     }
 
