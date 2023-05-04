@@ -1,5 +1,9 @@
-/*Classe que guarda os valores de user*/
-//Autor: João Gonçalo
+/**
+ * Classe que guarda os valores de user
+ * @Author João Gonçalo
+ * 
+ * */
+
 package SRC.Model.VO;
 
 import java.io.Serializable;
@@ -12,7 +16,15 @@ public class User implements Serializable{
     private String email;           // email
     private String name;            // nome
 
-    // Construtor com todas os atributos
+    /**
+    * Construtor que recebe todos os argumentos necessários para criar um objeto User.
+    * 
+    * @param id ID do user
+    * @param username username
+    * @param password senha
+    * @param email email
+    * @param name nome
+    */
     public User(Long id, String username, String password, String email, String name){
         this.id = id;
         this.username = username;
