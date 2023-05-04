@@ -25,13 +25,15 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     private User usuario;
     @FXML public Label nomeUsuario;
+    @FXML public Label email;
     @FXML public ListView<VBoxBook> minhasLeiturasAtuais;
     @FXML public ListView<VBoxReadBook> leiturasFinalizadas;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            nomeUsuario.setText(usuario.getUsername());
+            nomeUsuario.setText(usuario.getName());
+            email.setText(usuario.getEmail());
             leiturasAtuais();
             leiturasConcluidas();
         } catch (Exception e) {

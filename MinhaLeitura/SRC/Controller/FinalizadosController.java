@@ -12,13 +12,14 @@ import java.util.ResourceBundle;
 
 public class FinalizadosController implements Initializable {
     private User usuario;
-    @FXML
-    public Label nomeUsuario;
+    @FXML public Label nomeUsuario;
+    @FXML public Label email;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            nomeUsuario.setText(usuario.getUsername());
+            nomeUsuario.setText(usuario.getName());
+            email.setText(usuario.getEmail());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -18,7 +18,7 @@ public class ConfiguracoesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            nomeUsuario.setText(usuario.getUsername());
+            nomeUsuario.setText(usuario.getName());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
