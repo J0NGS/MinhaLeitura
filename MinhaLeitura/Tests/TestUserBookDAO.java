@@ -30,13 +30,13 @@ public class TestUserBookDAO {
         
         // Testando o método read
         System.out.println("Teste do método read:");
-        System.out.println(userBookDAO.read(book.getId())); // Deve imprimir as informações do UserBook
+        //System.out.println(userBookDAO.read(book.getId())); // Deve imprimir as informações do UserBook
         
         // Testando o método update
         System.out.println("Teste do método update:");
         userBook.setRating(4);
         System.out.println(userBookDAO.update(book.getId(),  userBook)); // Deve retornar true
-        System.out.println(userBookDAO.read(book.getId())); // Deve imprimir as informações atualizadas do UserBook
+        //System.out.println(userBookDAO.read(book.getId())); // Deve imprimir as informações atualizadas do UserBook
         
         // Testando o método delete
         /*
