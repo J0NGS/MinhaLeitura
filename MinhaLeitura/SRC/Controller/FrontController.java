@@ -32,8 +32,8 @@ public class FrontController {
     private UserDAO usuarioDAO = new UserDAO();
 
     public void autenticar(ActionEvent event) throws Exception{
-        if (userBO.Authenticate(username.getText(), password.getText())){
-            usuario = userDAO.listByUsername(username.getText());
+        usuario = userBO.login(username.getText(), password.getText());
+        if (usuario != null){
             Telas.telaInicial(usuario);
         }else{
             avisoLogin.setVisible(true);
