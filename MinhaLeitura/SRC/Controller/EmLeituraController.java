@@ -25,14 +25,15 @@ import java.util.ResourceBundle;
 public class EmLeituraController implements Initializable {
 
     private User usuario;
-    @FXML
-    public Label nomeUsuario;
+    @FXML public Label nomeUsuario;
+    @FXML public Label email;
 
     @FXML public ListView<HBoxBook> minhasLeituras;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       nomeUsuario.setText(usuario.getUsername());
+       nomeUsuario.setText(usuario.getName());
+        email.setText(usuario.getEmail());
         try {
             leiturasAtuais();
         } catch (Exception e) {

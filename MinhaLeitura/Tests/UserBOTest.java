@@ -18,7 +18,7 @@ public class UserBOTest {
         User user2 = userBO.searchById(2L);
         User user3 = userBO.searchById(3L);
 
-        System.out.println("Usuário 1 encontrado: " + user1.getName());
+        System.out.println("Usuário 1 encontrado: " + user1.getName()+ user1.getPassword()+ user1.getUsername());
         System.out.println("Usuário 2 encontrado: " + user2.getName());
         System.out.println("Usuário 3 encontrado: " + user3.getName());
 
@@ -66,13 +66,13 @@ public class UserBOTest {
         //Testando busca por ID inválido
         try {
             User user4 = userBO.searchById(4L);
-            System.out.println("Usuário 4 encontrado: " + user4.getName());
+            System.out.println("Usuário 4 encontrado: " + user4.getName() + user4.getUsername() + user4.getPassword()+user4.getEmail());
         } catch (Exception e) {
             e.getMessage();
         }
 
         try {
-            User user0 = userBO.searchById(0L);
+            User user0 = userBO.searchById(5L);
             System.out.println("Usuário 0 encontrado: " + user0.getName());
         } catch (Exception e) {
             e.getMessage();
