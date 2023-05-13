@@ -73,14 +73,22 @@ public class Telas extends Application {
         primaryStage.setScene(scene);
     }
 
-    public static void modalAddLeitura() throws Exception{
-        Stage newStage = new Stage();
+    static Stage newStage = new Stage();
+    public static void modalPesquisaLeitura() throws Exception{
         //newStage.initStyle(StageStyle.TRANSPARENT);
         newStage.setTitle("Adicionando uma nova leitura");
 
         newStage.initOwner(Telas.primaryStage);
         newStage.initModality(Modality.APPLICATION_MODAL);
 
+        Parent root = FXMLLoader.load(Telas.class.getResource("VE/modalPesquisaLeitura.fxml"));
+        Scene cena = new Scene(root);
+        newStage.setScene(cena);
+        newStage.show();
+    }
+
+    public static void modalAddLeitura() throws Exception{
+        //newStage.initStyle(StageStyle.TRANSPARENT);
         Parent root = FXMLLoader.load(Telas.class.getResource("VE/modalAddLeitura.fxml"));
         Scene cena = new Scene(root);
         newStage.setScene(cena);

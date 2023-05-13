@@ -94,7 +94,7 @@ public class HomeController implements Initializable {
     }
 
     public void abrirModalAddLeitura(ActionEvent event) throws  Exception{
-        Telas.modalAddLeitura();
+        Telas.modalPesquisaLeitura();
     }
 
     private void abrirModalLeitura(ObservableValue<? extends VBoxBook> observable, VBoxBook livroAntigo, VBoxBook livroNovo){

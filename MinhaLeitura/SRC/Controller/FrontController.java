@@ -51,4 +51,8 @@ public class FrontController {
         Stage stage = (Stage) fecharTela.getScene().getWindow(); //Obtendo a janela atual
         stage.close(); //Fechando o Stage
     }
+
+    public void cadastrarNovoLivro(ActionEvent event) throws Exception{
+        Telas.modalAddLeitura();
+    }
 }
