@@ -6,15 +6,22 @@ import SRC.Model.VO.User;
 public class UserDAOTest {
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-
+        
         User user1 = new User("John", "12345","john@mail.com", "jhon textor");
-        User user2 = new User("Mary","420", "mary@mail.com","Mary Joan");
+        User user2 = new User("jtinha", "botafogo", "jnetogoncalo@gmail.com", "João");
         User user3 = new User("Bob","Belove" ,"bob@mail.com", "Bob Marley");
-
+        
         // Testando o create
         boolean resultCreate1 = dao.create(user1);
         boolean resultCreate2 = dao.create(user2);
         boolean resultCreate3 = dao.create(user3);
+
+        System.out.println(resultCreate3);
+        
+        //Testando findByName
+        String username = "Bob";
+        User userUpdate = dao.listByUsername(username);
+        System.out.println("Usuário encontrado com sucesso. " + userUpdate.getName());
 
         if (resultCreate1 && resultCreate2 && resultCreate3) {
             System.out.println("Usuários criados com sucesso.");
@@ -33,7 +40,7 @@ public class UserDAOTest {
 
         // Testando o update
         System.out.println("Usuário antes do update " + user1.getUsername() );
-        User userUpdate = new User("Jonathan", "1010","jonathan@mail.com", "João Nathan");
+        userUpdate = new User("Jonathan", "1010","jonathan@mail.com", "João Nathan");
         boolean resultUpdate = dao.update(1L, userUpdate);
         User test = dao.readUser(1L);
         if (resultUpdate) {
@@ -43,11 +50,6 @@ public class UserDAOTest {
             System.out.println("Houve um erro ao atualizar o usuário.");
         }
 
-
-        //Testando findByName
-        String username = "Bob";
-        userUpdate = dao.listByUsername(username);
-        System.out.println("Usuário encontrado com sucesso. " + userUpdate.getName());
 
         //Testando findByName
         String email = "mary@mail.com";

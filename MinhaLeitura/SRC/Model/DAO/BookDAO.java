@@ -66,7 +66,7 @@ public class BookDAO implements DAOInterface<Book>{
             throw new ReadException("Nenhum livro encontrado, lista de livros vazia ou inexistente");
         } else {
             LinkedListDouble<Book> bookReturn = new LinkedListDouble<>();
-            for (Long i = 1L; i < books.size(); i++){
+            for (Long i = 1L; i <= books.size(); i++){
                 bookReturn.addLast(books.get(i));
             }
             return bookReturn;

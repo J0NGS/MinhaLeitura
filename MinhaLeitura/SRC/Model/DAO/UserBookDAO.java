@@ -8,6 +8,7 @@ import SRC.Model.VO.User;
 import SRC.Model.VO.UserBook;
 import Utils.BinaryPersisitence.BinaryUserBookHandler;
 import Utils.ED.HashTable;
+import Utils.ED.LinkedList;
 import Utils.ED.LinkedListDouble;
 
 public class UserBookDAO implements DAOInterface<UserBook> {
@@ -33,14 +34,14 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         Long id = (long) userBooks.size();
         id++;
         entity.setId(id);
-        userBooks.put(entity.getBook(), entity);
+        userBooks.put(id, entity);
         this.handler.save(userBooks);
 
         userBooks.clear();
 
         // Validando se o livro foi salvo no arquivo
         userBooks = this.handler.read();
-        UserBook bookRead = userBooks.get(entity.getBook());
+        UserBook bookRead = userBooks.get(id);
         if (bookRead.equals(entity)){
             return true;
         }else{
@@ -55,7 +56,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
             throw new ReadException("Nenhum userBook encontrado, lista de userBook vazia ou inexistente");
         }else{
             LinkedListDouble<UserBook> userBookReturn = new LinkedListDouble<>();
-            for(Long i = 1L; i < userBooks.size(); i++){
+            for(Long i = 1L; i <= userBooks.size(); i++){
                 userBookReturn.addLast(userBooks.get(i));
             }
             return userBookReturn;
@@ -132,7 +133,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
                 entitys.removeFirst();
             }
         }
-        if(result == null){
+        if(result.getSize() == 0){
             throw new ReadException("Nenhum userBook relacionado ao usuário encontrado");
         }
         return result;
@@ -148,15 +149,40 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         LinkedListDouble<UserBook> result = new LinkedListDouble<>();
         Book book = bookDao.readBook(id);
         for(int i = entitys.getSize(); i != 0; i--){
-            if(entitys.peekFirst().getUserId() == book.getId()){
+            if(entitys.peekFirst().getBook().equals(book.getId())){
                 result.addLast(entitys.peekFirst());
                 entitys.removeFirst();
             }else{
                 entitys.removeFirst();
             }
         }
-        if(result == null){
+        if(result.getSize() == 0){
             throw new ReadException("Nenhum userBook relacionado ao livro encontrado");
+        }
+        return result;
+    }
+    /**
+     * Método que retorna uma lista encadeada simples com apenas os ids dos livros pertecentes ao user
+     * @param userId id do user que possui os livros
+     * @return result lista encadeada simples com todos os ids dos livros pertecentes ao user
+     */
+    public LinkedList<Long> listUserBooks(Long userId){
+        LinkedListDouble<UserBook> userBooks = listByBook(userId);
+        LinkedList<Long> result = new LinkedList<>();
+        for(int i = userBooks.getSize(); i != 0; i--){
+            result.addFirst(userBooks.peekFirst().getId());
+            userBooks.removeFirst();
+        }
+        return result;
+    }
+
+
+    public boolean cotainsBook(Long idUser, Long idBook){
+        boolean result = false;
+        for(LinkedList<Long> idBooks = listUserBooks(idUser); idBooks.peekFirst() != null; idBooks.removeFirst()){
+            if(idBooks.peekFirst() == idBook){
+                result = true;
+            }
         }
         return result;
     }

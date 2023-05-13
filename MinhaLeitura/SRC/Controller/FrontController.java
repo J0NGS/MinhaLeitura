@@ -27,7 +27,7 @@ public class FrontController {
     }
 
     public void setUsuario(User usuario) {
-        this.usuario = new User(usuario.getId(), usuario.getUsername(), usuario.getPassword());
+        this.usuario = new User(usuario.getUsername(),usuario.getPassword(), usuario.getEmail(), usuario.getName());
     }
 
     private UserDAO usuarioDAO = new UserDAO();

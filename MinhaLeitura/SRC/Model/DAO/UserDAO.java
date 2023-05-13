@@ -63,7 +63,7 @@ public class UserDAO implements DAOInterface<User>{
             throw new ReadException("Nenhum usuário encontrado, lista de usuários vazia ou inexistente");
         } else {
             LinkedListDouble<User> userReturn = new LinkedListDouble<>();
-            for (Long i = 1L; i < users.size(); i++){
+            for (Long i = 1L; i <= users.size(); i++){
                 if(users.get(i) != null){
                 userReturn.addLast(users.get(i));
                 }

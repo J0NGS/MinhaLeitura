@@ -12,7 +12,7 @@ public class TestBookDAO {
 
         // Criação de livros
         Book book1 = new Book("Livro 1", "Autor 1", "Editora 1", LocalDate.now(), "Categoria 1");
-        Book book2 = new Book("Livro 2", "Autor 2", "Editora 2", LocalDate.now(), "Categoria 2");
+        Book book2 = new Book("A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
         Book book3 = new Book("Livro 10", "Autor 1", "Editora 1", LocalDate.now(), "Categoria 1");
 
 
