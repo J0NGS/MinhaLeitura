@@ -27,7 +27,7 @@ public class CadastroController implements Initializable {
     public void cadastrar(ActionEvent event) throws Exception{
         try {
             usuario.createUser(username.getText(), senha.getText(), email.getText(), nome.getText());
-            Telas.telaLogin();
+            Telas.telaInicial(null);
         } catch (Exception e) {
             System.out.println("Erro ao criar usuário: " + e.getMessage());
         }

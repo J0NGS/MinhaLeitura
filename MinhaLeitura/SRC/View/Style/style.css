@@ -115,6 +115,14 @@
     -fx-background-repeat: no-repeat;
 }
 
+.botaoCloseInfo{
+    -fx-background-color: none;
+    -fx-background-radius: 30px;
+    -fx-background-image: url(../Images/botaoCloseInfo.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
 .textField{
     -fx-background-color: #fff;
     -fx-background-radius: 30px;
