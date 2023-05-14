@@ -38,7 +38,6 @@ public class UserBOTest {
         System.out.println("Autenticação usuário 2: " + auth2);
         System.out.println("Autenticação usuário 3: " + auth3);
 
-<<<<<<< HEAD
         //Testando criação de usuário inválido
         try {
             userBO.createUser(null, "123456", "user4@gmail.com", "User Four");
@@ -91,9 +90,7 @@ public class UserBOTest {
         } catch (Exception e) {
             e.getMessage();
         }
-=======
-        //testando book
->>>>>>> ReviewDAOBook
+
 
     }
 }

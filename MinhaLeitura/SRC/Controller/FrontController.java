@@ -1,19 +1,19 @@
 package SRC.Controller;
 
+import SRC.Model.BO.BookBO;
 import SRC.Model.BO.UserBO;
 import SRC.Model.DAO.UserDAO;
+import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
 
 public class FrontController {
     @FXML private Label avisoLogin;
@@ -29,13 +29,6 @@ public class FrontController {
         return usuario;
     }
 
-<<<<<<< HEAD
-=======
-    public void setUsuario(User usuario) {
-        this.usuario = new User(usuario.getUsername(),usuario.getPassword(), usuario.getEmail(), usuario.getName());
-    }
-
->>>>>>> ReviewDAOBook
     private UserDAO usuarioDAO = new UserDAO();
 
     public void autenticar(ActionEvent event) throws Exception{
@@ -45,7 +38,6 @@ public class FrontController {
         }else{
             avisoLogin.setVisible(true);
         }
-
     }
 
     public void fazerCadastro(ActionEvent event) throws Exception{
@@ -61,5 +53,46 @@ public class FrontController {
 
     public void cadastrarNovoLivro(ActionEvent event) throws Exception{
         Telas.modalAddLeitura();
+    }
+
+    BookBO bo = new BookBO();
+
+    public void pesquisarLivro(ActionEvent event) throws Exception{
+
+    }
+
+    @FXML SplitMenuButton genero;
+    @FXML TextField titulo;
+    @FXML TextField autor;
+    @FXML TextField editora;
+    @FXML TextField descricao;
+    @FXML DatePicker data;
+    public void cadastrarLivro(ActionEvent event) throws Exception{
+        Book livro = new Book(titulo.getText(),autor.getText(), editora.getText(), data.getValue(), genero.getText());
+        bo.addBook(livro);
+    }
+
+    public void aventura(ActionEvent event) throws Exception{
+        genero.setText("Aventura");
+    }
+
+    public void fantasia(ActionEvent event) throws Exception{
+        genero.setText("Fantasia");
+    }
+
+    public void romance(ActionEvent event) throws Exception{
+        genero.setText("Romance");
+    }
+
+    public void suspense(ActionEvent event) throws Exception{
+        genero.setText("Seuspense");
+    }
+
+    public void fatosReais(ActionEvent event) throws Exception{
+        genero.setText("Fatos Reais");
+    }
+
+    public void investigacao(ActionEvent event) throws Exception{
+        genero.setText("Investicação");
     }
 }
