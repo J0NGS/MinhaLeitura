@@ -42,8 +42,13 @@ public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
         }
     
         // Insere o novo par chave-valor na posição encontrada
-        entries[index] = new EntryMap<K, V>(key, value);
-        size++;
+        if(entries[index] == null){
+            entries[index] = new EntryMap<K, V>(key, value);
+            size++;
+        }else{
+            entries[index] = new EntryMap<K, V>(key, value);
+        }
+        
     
         // Verifica se a tabela precisa ser redimensionada
         if ((double) size / entries.length >= 0.75) {
@@ -84,7 +89,6 @@ public class HashTable<K,V> implements HashTableInterface<K,V>, Serializable{
             // Se o valor atual na tabela é o valor buscado, marca como uma tumba
             if (entries[index].getKey().equals(key) && !entries[index].equals(TOMBSTONE)) {
                 entries[index] = TOMBSTONE;
-                size--;
                 return;
             }
             

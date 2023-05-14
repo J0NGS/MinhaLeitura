@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TeestBookBO",
+            "request": "launch",
+            "mainClass": "Tests.TeestBookBO",
+            "projectName": "MinhaLeitura_b546ff0b"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

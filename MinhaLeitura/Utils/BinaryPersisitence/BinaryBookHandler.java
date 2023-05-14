@@ -27,14 +27,14 @@ public class BinaryBookHandler {
         }
     }
 
-    public HashTable<Long, Book> read() {
+    public HashTable<Long, Book> read(){
         HashTable<Long, Book> books = null;
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.fileName));
             books = (HashTable<Long, Book>) in.readObject();
             in.close();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            e.getSuppressed();
         }
         return books;
     }

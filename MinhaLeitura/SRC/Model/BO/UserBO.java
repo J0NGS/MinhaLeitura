@@ -17,9 +17,10 @@ import Utils.ED.LinkedList;
 import Utils.ED.LinkedListDouble;
 
 public class UserBO {
-   UserDAO dao = new UserDAO();
-   UserBookDAO userBookDao = new UserBookDAO();
-   BookDAO bookDao = new BookDAO();
+   private UserDAO dao = new UserDAO();
+   private UserBookDAO userBookDao = new UserBookDAO();
+   private BookDAO bookDao = new BookDAO();
+   private BookBO bookBo;
 
 /**
  * Função para cadastrar o usuário
@@ -63,7 +64,7 @@ public class UserBO {
 
    public User searchById(Long id){
     try {
-        if(id == null || id < 1){
+        if(id == null || id < 0){
             throw new ReadException("Id Inválido");
         }
         
@@ -96,24 +97,26 @@ public class UserBO {
     }
   }
  
-
   public Boolean addBookList(Long userId,Book book){
-    boolean result = false;
-    for(LinkedListDouble<Book> userBooks = listUserBook(userId); userBooks.peekFirst() != null; userBooks.removeFirst()){
-        if(userBooks.peekFirst().equals(book)){
-            throw new AddBookException("Livro já existe na lista do user");
-        } else{
-            result =  true;
-        }    
+    try {
+        bookBo.addBook(book);
+        LinkedListDouble<Book>userBooks = listUserBook(userId);
+        for(;userBooks.peekFirst() != null; userBooks.removeFirst()){
+            if(userBooks.peekFirst().equals(book)){
+                throw new AddBookException("Livro já está na lista do user");
+            }
+        }
+        
+        Book bookUser = bookBo.findBookByName(book.getTitle());
+    
+        UserBook userBook = new UserBook(bookUser.getId(),userId , null, null, 0, 0, null, false);
+        return userBookDao.create(userBook);    
+    } catch (Exception e) {
+        e.getMessage();
+        return false;
     }
-    if(result){
-        UserBook bookAdd = new UserBook(book.getId(), userId, null, null, 0, 0, null, false);
-        userBookDao.create(bookAdd);
-        if(userBookDao.cotainsBook(userId, userId))
-    }
-
-
   }
+
   /**
    * Método que retorna os livros que o usuário já possui
    * @param userId id do usuário propriétario dos livros

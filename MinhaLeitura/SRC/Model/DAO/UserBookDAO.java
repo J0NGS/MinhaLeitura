@@ -31,7 +31,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         }
 
         //Setando id
-        Long id = (long) userBooks.size();
+        Long id = (long) (userBooks.size() - 1);
         id++;
         entity.setId(id);
         userBooks.put(id, entity);
@@ -56,7 +56,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
             throw new ReadException("Nenhum userBook encontrado, lista de userBook vazia ou inexistente");
         }else{
             LinkedListDouble<UserBook> userBookReturn = new LinkedListDouble<>();
-            for(Long i = 1L; i <= userBooks.size(); i++){
+            for(Long i = 0L; i <= userBooks.size() - 1; i++){
                 userBookReturn.addLast(userBooks.get(i));
             }
             return userBookReturn;
@@ -125,7 +125,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         LinkedListDouble<UserBook> entitys = read();
         LinkedListDouble<UserBook> result = new LinkedListDouble<>();
         User user = userDao.listByUsername(username);
-        for(int i = entitys.getSize(); i != 0; i--){
+        for(int i = entitys.getSize(); i >= 0; i--){
             if(entitys.peekFirst().getUserId() == user.getId()){
                 result.addLast(entitys.peekFirst());
                 entitys.removeFirst();
@@ -148,7 +148,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         LinkedListDouble<UserBook> entitys = read();
         LinkedListDouble<UserBook> result = new LinkedListDouble<>();
         Book book = bookDao.readBook(id);
-        for(int i = entitys.getSize(); i != 0; i--){
+        for(int i = entitys.getSize(); i >= 0; i--){
             if(entitys.peekFirst().getBook().equals(book.getId())){
                 result.addLast(entitys.peekFirst());
                 entitys.removeFirst();
@@ -169,7 +169,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
     public LinkedList<Long> listUserBooks(Long userId){
         LinkedListDouble<UserBook> userBooks = listByBook(userId);
         LinkedList<Long> result = new LinkedList<>();
-        for(int i = userBooks.getSize(); i != 0; i--){
+        for(int i = userBooks.getSize(); i >= 0; i--){
             result.addFirst(userBooks.peekFirst().getId());
             userBooks.removeFirst();
         }

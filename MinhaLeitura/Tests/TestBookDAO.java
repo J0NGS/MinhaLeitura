@@ -20,6 +20,7 @@ public class TestBookDAO {
         System.out.println("Teste de criação:");
         System.out.println("Livro 1 criado com sucesso? " + bookDAO.create(book1));
         System.out.println("Livro 2 criado com sucesso? " + bookDAO.create(book2));
+        System.out.println("Livro 3 criado com sucesso? " + bookDAO.create(book3));
 
         // Teste de leitura
         System.out.println("\nTeste de leitura:");
