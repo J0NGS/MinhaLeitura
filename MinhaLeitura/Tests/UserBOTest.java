@@ -43,7 +43,6 @@ public class UserBOTest {
         System.out.println("Autenticação usuário 2: " + auth2);
         System.out.println("Autenticação usuário 3: " + auth3);
 
-<<<<<<< HEAD
         //Testando criação de usuário inválido
         try {
             userBO.createUser(null, "123456", "user4@gmail.com", "User Four");
@@ -97,7 +96,6 @@ public class UserBOTest {
             e.getMessage();
         }
 
-=======
         //testando adicionar book na lista de livros do user
 
         Book book1 = new Book("1984", "George Orwell", "Companhia das Letras", LocalDate.of(1949, 6, 8), "Ficção Distópica");
@@ -147,7 +145,6 @@ public class UserBOTest {
             userBooks.removeFirst();
             i--;
         }
->>>>>>> ReviewDAOBook
 
     }
 }
