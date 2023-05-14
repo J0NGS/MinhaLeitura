@@ -66,7 +66,7 @@ public class BookDAO implements DAOInterface<Book>{
             throw new ReadException("Nenhum livro encontrado, lista de livros vazia ou inexistente");
         } else {
             LinkedListDouble<Book> bookReturn = new LinkedListDouble<>();
-            for (Long i = 0L; i <= books.size() -1; i++){
+            for (Long i = 0L; i <= (books.size() - 1); i++){
                 bookReturn.addLast(books.get(i));
             }
             return bookReturn;
@@ -139,17 +139,20 @@ public class BookDAO implements DAOInterface<Book>{
     /**
      * Função para listar pelo Nome
      * @param name nome a ser buscado
-     * @return Lista duplamente encadeada contendo os livros de resultado da busca
+     * @return Lista duplamente encadeada contendo os resultado da busca
      */
 
      public LinkedListDouble<Book> listByName(String name){
         LinkedListDouble<Book> bookers = read();
         LinkedListDouble<Book> result = new LinkedListDouble<>();
-        for(;bookers.peekFirst()!= null; bookers.removeFirst()){
+        for(int i = bookers.getSize(); i > 0; i--){
             //verificando se a string passada contem no nome do livro
             if(bookers.peekFirst().getTitle().toLowerCase().contains(name.toLowerCase())){
                 result.addLast(bookers.peekFirst());
-            }
+                bookers.removeFirst();
+
+            }else{
+                bookers.removeFirst();}
         }
         return result;
     }

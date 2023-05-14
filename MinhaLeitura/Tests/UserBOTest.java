@@ -1,8 +1,12 @@
 package Tests;
 
+import java.time.LocalDate;
+
 import SRC.Model.BO.UserBO;
 import SRC.Model.DAO.UserDAO;
+import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
+import Utils.ED.LinkedListDouble;
 
 public class UserBOTest {
     public static void main(String[] args) {
@@ -38,7 +42,21 @@ public class UserBOTest {
         System.out.println("Autenticação usuário 2: " + auth2);
         System.out.println("Autenticação usuário 3: " + auth3);
 
-        //testando book
+        //testando adicionar book na lista de livros do user
+
+        Book book1 = new Book("1984", "George Orwell", "Companhia das Letras", LocalDate.of(1949, 6, 8), "Ficção Distópica");
+        Book book2 = new Book("A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
+        
+        userBO.addBookList(0L, book1);
+        userBO.addBookList(0L, book2);
+
+        LinkedListDouble<Book> userBooks = userBO.listUserBook(0L);
+
+        for(int i = userBooks.getSize(); i >= 0; i--){
+            System.out.println(userBooks.peekFirst().getTitle());
+            userBooks.removeFirst();
+        }
+
 
     }
 }

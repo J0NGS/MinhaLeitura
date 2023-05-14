@@ -1,6 +1,7 @@
 package SRC.Model.BO;
 
 import java.io.EOFException;
+import java.io.FileNotFoundException;
 
 import SRC.Model.BO.Exception.AddBookException;
 import SRC.Model.BO.Exception.LoginException;
@@ -20,7 +21,7 @@ public class UserBO {
    private UserDAO dao = new UserDAO();
    private UserBookDAO userBookDao = new UserBookDAO();
    private BookDAO bookDao = new BookDAO();
-   private BookBO bookBo;
+   private BookBO bookBo = new BookBO();
 
 /**
  * Função para cadastrar o usuário
@@ -100,15 +101,16 @@ public class UserBO {
   public Boolean addBookList(Long userId,Book book){
     try {
         bookBo.addBook(book);
-        LinkedListDouble<Book>userBooks = listUserBook(userId);
-        for(;userBooks.peekFirst() != null; userBooks.removeFirst()){
-            if(userBooks.peekFirst().equals(book)){
-                throw new AddBookException("Livro já está na lista do user");
-            }
-        }
-        
         Book bookUser = bookBo.findBookByName(book.getTitle());
-    
+        LinkedListDouble<Book>userBooks = listUserBook(userId);
+        
+        for(int i = userBooks.getSize(); i  > 0; i--){
+            if(userBooks.peekFirst().equals(bookUser)){
+                throw new AddBookException("Livro já está na lista do user");
+            }else{
+                userBooks.removeFirst();
+            }
+        }    
         UserBook userBook = new UserBook(bookUser.getId(),userId , null, null, 0, 0, null, false);
         return userBookDao.create(userBook);    
     } catch (Exception e) {
@@ -124,13 +126,20 @@ public class UserBO {
    */
   public LinkedListDouble<Book> listUserBook(Long userId){
     try {
-        if(userId == null || userId == 0L){
+        if(userId == null || userId < 0L){
             throw new AddBookException("Id de user inválido");
         }
 
         LinkedListDouble<Book> books = new LinkedListDouble<>();
-        for(LinkedList<Long> listBooks = userBookDao.listUserBooks(userId); listBooks.peekFirst()!= null; listBooks.removeFirst()){
-            books.addFirst(bookDao.readBook(listBooks.peekFirst()));
+        try {
+            LinkedListDouble<UserBook> listBooks = userBookDao.listByUser(userId);
+            for(int i = listBooks.size; i > 0; i--){
+                books.addFirst(bookDao.readBook(listBooks.peekFirst().getBook()));
+                listBooks.removeFirst();
+            }
+        } catch (Exception e) {
+            e.getSuppressed();
+            
         }
         return books;
     } catch (Exception e) {

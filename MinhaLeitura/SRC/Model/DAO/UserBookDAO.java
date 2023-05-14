@@ -20,6 +20,12 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         this.handler = new BinaryUserBookHandler("MinhaLeitura/Tests/Bin/UserBookDAO.bin");
         this.bookDao = new BookDAO();
         this.userDao = new UserDAO();
+
+        HashTable<Long, UserBook> userBooks = this.handler.read();
+        if(userBooks == null){
+            userBooks = new HashTable<>();
+            this.handler.save(userBooks);
+        }
     }
 
     @Override
@@ -121,12 +127,12 @@ public class UserBookDAO implements DAOInterface<UserBook> {
      * @param username username do user dono do userBook
      * @return Lista duplamente encadeada com todos os userBooks pertencentes ao usuário
      */
-    public LinkedListDouble<UserBook> listByUser(String username){
+    public LinkedListDouble<UserBook> listByUser(Long userId){
         LinkedListDouble<UserBook> entitys = read();
         LinkedListDouble<UserBook> result = new LinkedListDouble<>();
-        User user = userDao.listByUsername(username);
-        for(int i = entitys.getSize(); i >= 0; i--){
-            if(entitys.peekFirst().getUserId() == user.getId()){
+        User user = userDao.readUser(userId);
+        for(int i = entitys.getSize(); i > 0; i--){
+            if(entitys.peekFirst().getUserId().equals(user.getId())){
                 result.addLast(entitys.peekFirst());
                 entitys.removeFirst();
             }else{
@@ -148,7 +154,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         LinkedListDouble<UserBook> entitys = read();
         LinkedListDouble<UserBook> result = new LinkedListDouble<>();
         Book book = bookDao.readBook(id);
-        for(int i = entitys.getSize(); i >= 0; i--){
+        for(int i = entitys.getSize(); i > 0; i--){
             if(entitys.peekFirst().getBook().equals(book.getId())){
                 result.addLast(entitys.peekFirst());
                 entitys.removeFirst();
@@ -166,10 +172,10 @@ public class UserBookDAO implements DAOInterface<UserBook> {
      * @param userId id do user que possui os livros
      * @return result lista encadeada simples com todos os ids dos livros pertecentes ao user
      */
-    public LinkedList<Long> listUserBooks(Long userId){
-        LinkedListDouble<UserBook> userBooks = listByBook(userId);
+    public LinkedList<Long> listUserBooks(String username){
+        LinkedListDouble<UserBook> userBooks = listByUser(username);
         LinkedList<Long> result = new LinkedList<>();
-        for(int i = userBooks.getSize(); i >= 0; i--){
+        for(int i = userBooks.getSize(); i > 0; i--){
             result.addFirst(userBooks.peekFirst().getId());
             userBooks.removeFirst();
         }

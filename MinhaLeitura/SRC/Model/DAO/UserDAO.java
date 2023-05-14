@@ -132,6 +132,7 @@ public class UserDAO implements DAOInterface<User>{
         for(int i = users.getSize() ; i >= 0; i--){
             if(users.peekFirst().getUsername().equals(username)){
                 result = users.peekFirst();
+                break;
             }else{
                 users.removeFirst();
             }

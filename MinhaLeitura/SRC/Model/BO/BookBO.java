@@ -40,31 +40,26 @@ public class BookBO {
 
         LinkedListDouble<Book> verifyBook = new LinkedListDouble<>();
 
+
         try {
-            // Verificando se livro já existe no sistema
-            verifyBook = dao.listByName(book.getTitle());
-        }catch (Exception e) {
+            if(verifyBook.peekFirst() != null){
+                for(;verifyBook.peekFirst() != null; verifyBook.removeFirst()){
+                    if(verifyBook.peekFirst().getTitle().equals(book.getTitle())
+                    && verifyBook.peekFirst().getAuthor().equals(book.getAuthor()) 
+                    && verifyBook.peekFirst().getReleaseDate().equals(book.getReleaseDate())
+                    && verifyBook.peekFirst().getPublishe().equals(book.getPublishe())){
+                        book.setId(verifyBook.peekFirst().getId());
+                        break;
+                    } else {
+                        dao.create(book);
+                    }
+                } 
+            }
+         } catch (Exception e) {
             e.getSuppressed();
             dao.create(book);
-            verifyBook = dao.listByName(book.getTitle());
         }
-
-
-        if(verifyBook.peekFirst() != null){
-            for(;verifyBook.peekFirst() != null; verifyBook.removeFirst()){
-                if(verifyBook.peekFirst().getTitle().equals(book.getTitle())
-                && verifyBook.peekFirst().getAuthor().equals(book.getAuthor()) 
-                && verifyBook.peekFirst().getReleaseDate().equals(book.getReleaseDate())
-                && verifyBook.peekFirst().getPublishe().equals(book.getPublishe())){
-                    book.setId(verifyBook.peekFirst().getId());
-                    break;
-                } else {
-                    dao.create(book);
-                }
-            } 
-        } else {
-            dao.create(book);
-        }
+        
     }
 
     public Book findBookByName(String name){
@@ -80,9 +75,12 @@ public class BookBO {
                 throw new NoFound("Nenhum livro encontrado");
             } 
 
-            for(; books.peekFirst() != null; books.removeFirst()){
+            for(int i = books.getSize(); i > 0; i--){
                 if(books.peekFirst().getTitle().equals(name)){
                     result = books.peekFirst();
+                    books.removeFirst();
+                }else{
+                    books.removeFirst();
                 }
             }
             
