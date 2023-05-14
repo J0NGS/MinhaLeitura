@@ -154,7 +154,7 @@ public class UserBO {
   }
 
   //Retorna apenas os livros que o usuário está lendo no momento
-  public LinkedListDouble<Book> listUserBookRead(Long userId){
+  public LinkedListDouble<Book> listUserBookReading(Long userId){
     try {
         if(userId == null || userId < 0L){
             throw new AddBookException("Id de user inválido");
@@ -181,6 +181,35 @@ public class UserBO {
         return null;
     }
   }
+
+    //Retorna apenas os livros que o usuário já leu
+    public LinkedListDouble<Book> listUserBookRead(Long userId){
+        try {
+            if(userId == null || userId < 0L){
+                throw new AddBookException("Id de user inválido");
+            }
+    
+            LinkedListDouble<Book> books = new LinkedListDouble<>();
+            try {
+                LinkedListDouble<UserBook> listBooks = userBookDao.listByUser(userId);
+                for(int i = listBooks.size; i > 0; i--){
+                    if(listBooks.peekFirst().getEndDate() != null){
+                        books.addFirst(bookDao.readBook(listBooks.peekFirst().getBook()));
+                        listBooks.removeFirst();
+                    }else{
+                        listBooks.removeFirst();
+                    }
+                }
+            } catch (Exception e) {
+                e.getSuppressed();
+                
+            }
+            return books;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+      }
 
   //Autenticar
   public boolean Authenticate(String username, String password){

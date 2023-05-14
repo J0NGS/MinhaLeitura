@@ -139,6 +139,14 @@ public class UserBOTest {
 
         //Testando lista de livros sendo lidos no momento
         userBO.reading(0L, 1L);
+        userBooks = userBO.listUserBookReading(0L);
+        for(int i = userBooks.getSize(); i > 0;){
+            System.out.println(userBooks.peekFirst().getTitle());
+            userBooks.removeFirst();
+            i--;
+        }
+
+        //Testando lista de livros já lidos
         userBooks = userBO.listUserBookRead(0L);
         for(int i = userBooks.getSize(); i > 0;){
             System.out.println(userBooks.peekFirst().getTitle());
