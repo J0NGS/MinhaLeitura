@@ -102,7 +102,7 @@ public class UserBookDAO implements DAOInterface<UserBook> {
                 handler.save(userBooks);
             }
             bookRead = userBooks.get(id);
-            if(bookRead.equals(entity) && bookRead.getId() == id){
+            if(bookRead.equals(entity) && bookRead.getId().equals(id)){
                 return true;
             }else{
                 return false;
@@ -172,8 +172,8 @@ public class UserBookDAO implements DAOInterface<UserBook> {
      * @param userId id do user que possui os livros
      * @return result lista encadeada simples com todos os ids dos livros pertecentes ao user
      */
-    public LinkedList<Long> listUserBooks(String username){
-        LinkedListDouble<UserBook> userBooks = listByUser(username);
+    public LinkedList<Long> listUserBooks(Long userId){
+        LinkedListDouble<UserBook> userBooks = listByUser(userId);
         LinkedList<Long> result = new LinkedList<>();
         for(int i = userBooks.getSize(); i > 0; i--){
             result.addFirst(userBooks.peekFirst().getId());

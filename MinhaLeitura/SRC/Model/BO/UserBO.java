@@ -1,9 +1,9 @@
 package SRC.Model.BO;
 
-import java.io.EOFException;
-import java.io.FileNotFoundException;
+
 
 import SRC.Model.BO.Exception.AddBookException;
+import SRC.Model.BO.Exception.AddComentException;
 import SRC.Model.BO.Exception.LoginException;
 import SRC.Model.BO.Exception.RegisterException;
 import SRC.Model.DAO.BookDAO;
@@ -169,6 +169,40 @@ public class UserBO {
     } catch (Exception e) {
         e.getMessage();
         return authenticate;
+    }
+  }
+
+  public void addComent(Long userId, Long bookId, String comment){
+    try {
+        LinkedList<Long> userBooks = userBookDao.listUserBooks(userId);
+        if(userBooks.peekFirst() == null){
+            throw new AddBookException("Nenhum livro na lista de livros do user");
+        }
+
+        if(comment.isEmpty() || comment.isBlank() || comment == null){
+            throw new AddBookException("Comentário invalido");
+        }
+
+        UserBook userBook = new UserBook();
+
+        for(int i = userBooks.size; i > 0; i--){
+            userBook = userBookDao.readBook(userBooks.peekFirst());
+            if(userBook.getBook().equals(bookId)){
+                userBook.setComment(comment);
+                userBookDao.update(userBook.getId(), userBook);
+                userBooks.removeFirst();
+                break;
+            }
+            else{
+                if(userBooks.peekFirst() ==  null){
+                    throw new AddComentException("Livro não encontrado na lista do user");
+                }
+                userBooks.removeFirst();
+            }
+        }
+
+    } catch (Exception e) {
+        e.getMessage();
     }
   }
 }

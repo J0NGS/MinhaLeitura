@@ -3,6 +3,7 @@ package Tests;
 import java.time.LocalDate;
 
 import SRC.Model.BO.UserBO;
+import SRC.Model.DAO.UserBookDAO;
 import SRC.Model.DAO.UserDAO;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
@@ -51,12 +52,15 @@ public class UserBOTest {
         userBO.addBookList(0L, book2);
 
         LinkedListDouble<Book> userBooks = userBO.listUserBook(0L);
+        System.out.println(userBooks.peekFirst().getTitle());
+        System.out.println(userBooks.peekFirst());
+        userBooks.removeFirst();
+        System.out.println(userBooks.peekFirst().getTitle());
+        System.out.println(userBooks.peekFirst());
+        UserBookDAO userBookDAO = new UserBookDAO();
+        userBO.addComent(0L, 0L, "Viva o comunismo");
 
-        for(int i = userBooks.getSize(); i >= 0; i--){
-            System.out.println(userBooks.peekFirst().getTitle());
-            userBooks.removeFirst();
-        }
-
+        System.out.println(userBookDAO.readBook(0L).getComment());
 
     }
 }
