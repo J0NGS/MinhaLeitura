@@ -104,7 +104,7 @@ public class Telas extends Application {
         //newStage.initStyle(StageStyle.TRANSPARENT);
         newStage.setTitle("Adicionando uma nova leitura");
 
-        newStage.initOwner(Telas.primaryStage);
+        //newStage.initOwner(Telas.primaryStage);
         //newStage.initModality(Modality.APPLICATION_MODAL);
 
         Parent root = FXMLLoader.load(Telas.class.getResource("VE/modalPesquisaLeitura.fxml"));

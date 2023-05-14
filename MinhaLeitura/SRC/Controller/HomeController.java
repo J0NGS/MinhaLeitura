@@ -78,8 +78,11 @@ public class HomeController implements Initializable {
         List<VBoxBook> livros = new ArrayList<>();
         ObservableList<VBoxBook> observableBook;
 
-        for(int i = 0; i < listaDeLivros.getSize(); i++){
+        System.out.println(listaDeLivros.getSize());
+
+        for(int i = listaDeLivros.getSize(); i > 0; i--){
             livros.add((new VBoxBook(listaDeLivros.peekFirst())));
+            listaDeLivros.removeFirst();
         }
 
         observableBook = FXCollections.observableArrayList(livros);
@@ -89,16 +92,19 @@ public class HomeController implements Initializable {
     }
 
     public void leiturasConcluidas() throws Exception {
-        Book livro = new Book("Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+
+        /*LinkedListDouble<Book> listaDeLivros = bo.listUserBookRead(usuario.getId());
+
         List<VBoxReadBook> livros = new ArrayList<>();
         ObservableList<VBoxReadBook> observableBook;
-        livros.add(new VBoxReadBook(livro));
-        livro = new Book("Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
-        livros.add(new VBoxReadBook(livro));
+
+        for(int i = 0; i < listaDeLivros.getSize(); i++){
+            livros.add((new VBoxReadBook(listaDeLivros.peekFirst())));
+        }
 
         observableBook = FXCollections.observableArrayList(livros);
         leiturasFinalizadas.setItems(observableBook);
-        //leiturasFinalizadas.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
+        //leiturasFinalizadas.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);*/
     }
 
     public void abrirModalAddLeitura(ActionEvent event) throws  Exception{
