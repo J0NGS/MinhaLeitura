@@ -6,6 +6,10 @@ import SRC.Model.DAO.UserDAO;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
+import Utils.InterfaceNewComponents.VBoxBook;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,6 +18,8 @@ import javafx.stage.Stage;
 
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FrontController {
     @FXML private Label avisoLogin;
@@ -57,7 +63,23 @@ public class FrontController {
 
     BookBO bo = new BookBO();
 
+    @FXML TextField tituloLivro;
+    @FXML ListView<String> livrosNoSistema;
     public void pesquisarLivro(ActionEvent event) throws Exception{
+        Book livro = new Book();
+        livro = bo.findBookByName(tituloLivro.getText());
+
+        List<String> livros = new ArrayList<>();
+        ObservableList<String> observableBook;
+        livros.add("Título: " + livro.getTitle() + "    Autor: " + livro.getAuthor());
+
+        observableBook = FXCollections.observableArrayList(livros);
+        livrosNoSistema.setItems(observableBook);
+        livrosNoSistema.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
+
+    }
+
+    private void abrirModalLeitura(ObservableValue<? extends String> observable, String livroAntigo, String livroNovo){
 
     }
 
