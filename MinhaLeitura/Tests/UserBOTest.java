@@ -75,5 +75,15 @@ public class UserBOTest {
         System.out.println(userBookDAO.readBook(0L).getReading());
         System.out.println(userBookDAO.readBook(0L).getStarDate());
 
+        //Testando marcador de página
+        userBO.bookmark(200, 0L, 0L);
+        System.out.println(userBookDAO.readBook(0L).getPagesRead());
+        
+        //Testando adcionar livro como "concluido"
+        userBO.read(0L,0L);
+        System.out.println(userBookDAO.readBook(0L).getReading());
+        System.out.println(userBookDAO.readBook(0L).getEndDate());
+
+
     }
 }

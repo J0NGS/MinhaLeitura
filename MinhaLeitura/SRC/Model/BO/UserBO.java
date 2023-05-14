@@ -7,7 +7,9 @@ import java.time.LocalDateTime;
 import SRC.Model.BO.Exception.AddAvaliationException;
 import SRC.Model.BO.Exception.AddBookException;
 import SRC.Model.BO.Exception.AddComentException;
+import SRC.Model.BO.Exception.BookmarkException;
 import SRC.Model.BO.Exception.LoginException;
+import SRC.Model.BO.Exception.ReadingException;
 import SRC.Model.BO.Exception.RegisterException;
 import SRC.Model.DAO.BookDAO;
 import SRC.Model.DAO.UserBookDAO;
@@ -235,7 +237,7 @@ public class UserBO {
             }
             else{
                 if(userBooks.peekFirst() ==  null){
-                    throw new AddComentException("Livro não encontrado na lista do user");
+                    throw new AddAvaliationException("Livro não encontrado na lista do user");
                 }
                 userBooks.removeFirst();
             }
@@ -251,7 +253,7 @@ public class UserBO {
     try{
         LinkedList<Long> userBooks = userBookDao.listUserBooks(userId);
         if(userBooks.peekFirst() == null){
-            throw new AddBookException("Nenhum livro na lista de livros do user");
+            throw new ReadingException("Nenhum livro na lista de livros do user");
         }
 
         UserBook userBook = new UserBook();
@@ -267,7 +269,73 @@ public class UserBO {
             }
             else{
                 if(userBooks.peekFirst() ==  null){
-                    throw new AddComentException("Livro não encontrado na lista do user");
+                    throw new ReadingException("Livro não encontrado na lista do user");
+                }
+                userBooks.removeFirst();
+            }
+        }
+
+    } catch (Exception e) {
+        e.getMessage();
+    }
+  }
+
+  // Marcador de página
+  public void bookmark(int lastPageRead, Long userId, Long bookId){
+    try{
+        LinkedList<Long> userBooks = userBookDao.listUserBooks(userId);
+        if(userBooks.peekFirst() == null){
+            throw new BookmarkException("Nenhum livro na lista de livros do user");
+        }
+        if(lastPageRead < 1){
+            throw new BookmarkException("Página inválida");
+        }
+        UserBook userBook = new UserBook();
+
+        for(int i = userBooks.size; i > 0; i--){
+            userBook = userBookDao.readBook(userBooks.peekFirst());
+            if(userBook.getBook().equals(bookId)){
+                userBook.setPagesRead((lastPageRead - 1));
+                userBookDao.update(userBook.getId(), userBook);
+                userBooks.removeFirst();
+                break;
+            }
+            else{
+                if(userBooks.peekFirst() ==  null){
+                    throw new BookmarkException("Livro não encontrado na lista do user");
+                }
+                userBooks.removeFirst();
+            }
+        }
+
+    } catch (Exception e) {
+        e.getMessage();
+    }
+  }
+
+  
+  //Marcar livro como "Concluido"
+  public void read(Long userId, Long bookId){
+    try{
+        LinkedList<Long> userBooks = userBookDao.listUserBooks(userId);
+        if(userBooks.peekFirst() == null){
+            throw new ReadingException("Nenhum livro na lista de livros do user");
+        }
+
+        UserBook userBook = new UserBook();
+
+        for(int i = userBooks.size; i > 0; i--){
+            userBook = userBookDao.readBook(userBooks.peekFirst());
+            if(userBook.getBook().equals(bookId)){
+                userBook.setReading(false);
+                userBook.setEndDate(LocalDateTime.now());
+                userBookDao.update(userBook.getId(), userBook);
+                userBooks.removeFirst();
+                break;
+            }
+            else{
+                if(userBooks.peekFirst() ==  null){
+                    throw new ReadingException("Livro não encontrado na lista do user");
                 }
                 userBooks.removeFirst();
             }
