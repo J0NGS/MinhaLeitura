@@ -67,8 +67,13 @@ public class UserBOTest {
         System.out.println(userBookDAO.readBook(0L).getComment());
 
         //Testando adicionar uma avaliação
-
         userBO.addAvaliation(5, 0L, 0L);
         System.out.println(userBookDAO.readBook(0L).getRating());
+
+        //Testando adicionar livro como "lendo"
+        userBO.reading(0L, 0L);
+        System.out.println(userBookDAO.readBook(0L).getReading());
+        System.out.println(userBookDAO.readBook(0L).getStarDate());
+
     }
 }

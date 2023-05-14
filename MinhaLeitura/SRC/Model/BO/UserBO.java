@@ -2,6 +2,8 @@ package SRC.Model.BO;
 
 
 
+import java.time.LocalDateTime;
+
 import SRC.Model.BO.Exception.AddAvaliationException;
 import SRC.Model.BO.Exception.AddBookException;
 import SRC.Model.BO.Exception.AddComentException;
@@ -209,6 +211,7 @@ public class UserBO {
     }
   }
 
+  //Adicionar avaliação do livro
   public void addAvaliation(int avaliation, Long userId, Long bookId){
     try{
         if(avaliation > 5 || avaliation< 0){
@@ -226,6 +229,38 @@ public class UserBO {
             userBook = userBookDao.readBook(userBooks.peekFirst());
             if(userBook.getBook().equals(bookId)){
                 userBook.setRating(avaliation);
+                userBookDao.update(userBook.getId(), userBook);
+                userBooks.removeFirst();
+                break;
+            }
+            else{
+                if(userBooks.peekFirst() ==  null){
+                    throw new AddComentException("Livro não encontrado na lista do user");
+                }
+                userBooks.removeFirst();
+            }
+        }
+
+    } catch (Exception e) {
+        e.getMessage();
+    }
+  }
+
+  //Marcar livro como "lendo"
+  public void reading(Long userId, Long bookId){
+    try{
+        LinkedList<Long> userBooks = userBookDao.listUserBooks(userId);
+        if(userBooks.peekFirst() == null){
+            throw new AddBookException("Nenhum livro na lista de livros do user");
+        }
+
+        UserBook userBook = new UserBook();
+
+        for(int i = userBooks.size; i > 0; i--){
+            userBook = userBookDao.readBook(userBooks.peekFirst());
+            if(userBook.getBook().equals(bookId)){
+                userBook.setReading(true);
+                userBook.setStarDate(LocalDateTime.now());
                 userBookDao.update(userBook.getId(), userBook);
                 userBooks.removeFirst();
                 break;
