@@ -2,6 +2,7 @@ package SRC.Model.BO;
 
 
 
+import SRC.Model.BO.Exception.AddAvaliationException;
 import SRC.Model.BO.Exception.AddBookException;
 import SRC.Model.BO.Exception.AddComentException;
 import SRC.Model.BO.Exception.LoginException;
@@ -148,6 +149,7 @@ public class UserBO {
     }
   }
 
+  //Autenticar
   public boolean Authenticate(String username, String password){
     boolean authenticate = false;
     try {
@@ -172,6 +174,7 @@ public class UserBO {
     }
   }
 
+  //Função para adicionar comentário
   public void addComent(Long userId, Long bookId, String comment){
     try {
         LinkedList<Long> userBooks = userBookDao.listUserBooks(userId);
@@ -189,6 +192,40 @@ public class UserBO {
             userBook = userBookDao.readBook(userBooks.peekFirst());
             if(userBook.getBook().equals(bookId)){
                 userBook.setComment(comment);
+                userBookDao.update(userBook.getId(), userBook);
+                userBooks.removeFirst();
+                break;
+            }
+            else{
+                if(userBooks.peekFirst() ==  null){
+                    throw new AddComentException("Livro não encontrado na lista do user");
+                }
+                userBooks.removeFirst();
+            }
+        }
+
+    } catch (Exception e) {
+        e.getMessage();
+    }
+  }
+
+  public void addAvaliation(int avaliation, Long userId, Long bookId){
+    try{
+        if(avaliation > 5 || avaliation< 0){
+            throw new AddAvaliationException("Avaliação deve ser entre 0 e 5");
+        }
+
+        LinkedList<Long> userBooks = userBookDao.listUserBooks(userId);
+        if(userBooks.peekFirst() == null){
+            throw new AddBookException("Nenhum livro na lista de livros do user");
+        }
+
+        UserBook userBook = new UserBook();
+
+        for(int i = userBooks.size; i > 0; i--){
+            userBook = userBookDao.readBook(userBooks.peekFirst());
+            if(userBook.getBook().equals(bookId)){
+                userBook.setRating(avaliation);
                 userBookDao.update(userBook.getId(), userBook);
                 userBooks.removeFirst();
                 break;

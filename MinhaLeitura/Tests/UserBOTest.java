@@ -57,10 +57,18 @@ public class UserBOTest {
         userBooks.removeFirst();
         System.out.println(userBooks.peekFirst().getTitle());
         System.out.println(userBooks.peekFirst());
+        
+        //Testando adicionar um comentário
         UserBookDAO userBookDAO = new UserBookDAO();
         userBO.addComent(0L, 0L, "Viva o comunismo");
-
         System.out.println(userBookDAO.readBook(0L).getComment());
 
+        userBO.addComent(0L, 0L, "Viva o liberalismo");
+        System.out.println(userBookDAO.readBook(0L).getComment());
+
+        //Testando adicionar uma avaliação
+
+        userBO.addAvaliation(5, 0L, 0L);
+        System.out.println(userBookDAO.readBook(0L).getRating());
     }
 }

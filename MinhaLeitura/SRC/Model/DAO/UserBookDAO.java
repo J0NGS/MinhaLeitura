@@ -1,5 +1,8 @@
 package SRC.Model.DAO;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import SRC.Model.DAO.Exceptions.DeleteException;
 import SRC.Model.DAO.Exceptions.ReadException;
 import SRC.Model.DAO.Exceptions.UpdateException;
@@ -20,7 +23,6 @@ public class UserBookDAO implements DAOInterface<UserBook> {
         this.handler = new BinaryUserBookHandler("MinhaLeitura/Tests/Bin/UserBookDAO.bin");
         this.bookDao = new BookDAO();
         this.userDao = new UserDAO();
-
         HashTable<Long, UserBook> userBooks = this.handler.read();
         if(userBooks == null){
             userBooks = new HashTable<>();
