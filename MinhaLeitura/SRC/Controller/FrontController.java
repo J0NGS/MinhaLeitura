@@ -92,6 +92,12 @@ public class FrontController {
     public void cadastrarLivro(ActionEvent event) throws Exception{
         Book livro = new Book(titulo.getText(),autor.getText(), editora.getText(), data.getValue(), genero.getText());
         bo.addBook(livro);
+        Book newBook = bo.findBookByName(livro.getTitle());
+        userBO.addBookList(usuario.getId(), newBook);
+
+
+        Stage stage = (Stage) fecharTela.getScene().getWindow(); //Obtendo a janela atual
+        stage.close(); //Fechando o Stage
     }
 
     public void aventura(ActionEvent event) throws Exception{

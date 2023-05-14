@@ -105,7 +105,7 @@ public class Telas extends Application {
         newStage.setTitle("Adicionando uma nova leitura");
 
         newStage.initOwner(Telas.primaryStage);
-        newStage.initModality(Modality.APPLICATION_MODAL);
+        //newStage.initModality(Modality.APPLICATION_MODAL);
 
         Parent root = FXMLLoader.load(Telas.class.getResource("VE/modalPesquisaLeitura.fxml"));
         Scene cena = new Scene(root);

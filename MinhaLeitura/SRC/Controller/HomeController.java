@@ -1,8 +1,11 @@
 package SRC.Controller;
 
+import SRC.Model.BO.UserBO;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
+import Utils.ED.LinkedList;
+import Utils.ED.LinkedListDouble;
 import Utils.InterfaceNewComponents.VBoxBook;
 import Utils.InterfaceNewComponents.VBoxReadBook;
 import javafx.beans.value.ObservableValue;
@@ -20,10 +23,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     private User usuario;
+    private UserBO bo = new UserBO();
+
     @FXML public Label nomeUsuario;
     @FXML public Label email;
     @FXML public ListView<VBoxBook> minhasLeiturasAtuais;
@@ -67,12 +73,14 @@ public class HomeController implements Initializable {
     }
 
     public void leiturasAtuais() throws Exception{
-        Book livro = new Book("Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        LinkedListDouble<Book> listaDeLivros = bo.listUserBookRead(usuario.getId());
+
         List<VBoxBook> livros = new ArrayList<>();
         ObservableList<VBoxBook> observableBook;
-        livros.add(new VBoxBook(livro));
-        livro = new Book("Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
-        livros.add(new VBoxBook(livro));
+
+        for(int i = 0; i < listaDeLivros.getSize(); i++){
+            livros.add((new VBoxBook(listaDeLivros.peekFirst())));
+        }
 
         observableBook = FXCollections.observableArrayList(livros);
 
