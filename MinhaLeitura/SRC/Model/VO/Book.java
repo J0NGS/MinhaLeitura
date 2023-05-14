@@ -30,7 +30,7 @@ public class Book implements Serializable{
     * @param category Categoria do livro
     */
     public Book(String title, String author, String publishe, LocalDate releaseDate, String category) {
-        this.id = id;
+        this.id = null;
         this.title = title;
         this.author = author;
         this.publishe = publishe;

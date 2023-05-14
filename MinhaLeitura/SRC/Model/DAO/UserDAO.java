@@ -34,7 +34,7 @@ public class UserDAO implements DAOInterface<User>{
         }
 
         //Setando o id
-        Long id = (long) users.size();                                      // verifica o tamanho da lista para saber qual o próximo id
+        Long id = (long) (users.size() - 1);                                      // verifica o tamanho da lista para saber qual o próximo id
         id++;                                                               // define novo id com incremento
         entity.setId(id);                                                   // chama função setar o id
         users.put(entity.getId(), entity);                                  // Inserindo o usuário na hashtable
@@ -63,7 +63,7 @@ public class UserDAO implements DAOInterface<User>{
             throw new ReadException("Nenhum usuário encontrado, lista de usuários vazia ou inexistente");
         } else {
             LinkedListDouble<User> userReturn = new LinkedListDouble<>();
-            for (Long i = 1L; i < users.size(); i++){
+            for (Long i = 0L; i <= users.size() - 1; i++){
                 if(users.get(i) != null){
                 userReturn.addLast(users.get(i));
                 }
@@ -129,9 +129,10 @@ public class UserDAO implements DAOInterface<User>{
      public User listByUsername(String username){
         LinkedListDouble<User> users = read();
         User result = new User();
-        for(int i = users.getSize() ; i != 0; i--){
+        for(int i = users.getSize() ; i >= 0; i--){
             if(users.peekFirst().getUsername().equals(username)){
                 result = users.peekFirst();
+                break;
             }else{
                 users.removeFirst();
             }
@@ -149,7 +150,7 @@ public class UserDAO implements DAOInterface<User>{
      public User listByEmail(String email){
         LinkedListDouble<User> users = read();
         User result = new User();
-        for(int i = users.getSize() ; i != 0; i--){
+        for(int i = users.getSize() ; i >= 0; i--){
             if(users.peekFirst().getEmail().equals(email)){
                 result = users.peekFirst();
             }else{
