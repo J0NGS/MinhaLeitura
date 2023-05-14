@@ -1,16 +1,27 @@
 package SRC.Model.BO;
 
+import java.io.EOFException;
+
+import SRC.Model.BO.Exception.AddBookException;
 import SRC.Model.BO.Exception.LoginException;
 import SRC.Model.BO.Exception.RegisterException;
+import SRC.Model.DAO.BookDAO;
+import SRC.Model.DAO.UserBookDAO;
 import SRC.Model.DAO.UserDAO;
 import SRC.Model.DAO.Exceptions.CreateException;
 import SRC.Model.DAO.Exceptions.ReadException;
+import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
+import SRC.Model.VO.UserBook;
+import Utils.ED.LinkedList;
 import Utils.ED.LinkedListDouble;
-import Utils.ED.Exceptions.ListException;
 
 public class UserBO {
-   UserDAO dao = new UserDAO();
+   private UserDAO dao = new UserDAO();
+   private UserBookDAO userBookDao = new UserBookDAO();
+   private BookDAO bookDao = new BookDAO();
+   private BookBO bookBo;
+
 /**
  * Função para cadastrar o usuário
  * @param username username do user
@@ -53,7 +64,7 @@ public class UserBO {
 
    public User searchById(Long id){
     try {
-        if(id == null || id < 1){
+        if(id == null || id < 0){
             throw new ReadException("Id Inválido");
         }
         
@@ -81,6 +92,48 @@ public class UserBO {
         throw new LoginException("Dados de login incorretos");
     }
     }catch(Exception e){
+        e.getMessage();
+        return null;
+    }
+  }
+ 
+  public Boolean addBookList(Long userId,Book book){
+    try {
+        bookBo.addBook(book);
+        LinkedListDouble<Book>userBooks = listUserBook(userId);
+        for(;userBooks.peekFirst() != null; userBooks.removeFirst()){
+            if(userBooks.peekFirst().equals(book)){
+                throw new AddBookException("Livro já está na lista do user");
+            }
+        }
+        
+        Book bookUser = bookBo.findBookByName(book.getTitle());
+    
+        UserBook userBook = new UserBook(bookUser.getId(),userId , null, null, 0, 0, null, false);
+        return userBookDao.create(userBook);    
+    } catch (Exception e) {
+        e.getMessage();
+        return false;
+    }
+  }
+
+  /**
+   * Método que retorna os livros que o usuário já possui
+   * @param userId id do usuário propriétario dos livros
+   * @return lista duplamente encadeada com livros retornados
+   */
+  public LinkedListDouble<Book> listUserBook(Long userId){
+    try {
+        if(userId == null || userId == 0L){
+            throw new AddBookException("Id de user inválido");
+        }
+
+        LinkedListDouble<Book> books = new LinkedListDouble<>();
+        for(LinkedList<Long> listBooks = userBookDao.listUserBooks(userId); listBooks.peekFirst()!= null; listBooks.removeFirst()){
+            books.addFirst(bookDao.readBook(listBooks.peekFirst()));
+        }
+        return books;
+    } catch (Exception e) {
         e.getMessage();
         return null;
     }

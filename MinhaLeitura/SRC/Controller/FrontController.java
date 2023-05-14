@@ -29,6 +29,13 @@ public class FrontController {
         return usuario;
     }
 
+<<<<<<< HEAD
+=======
+    public void setUsuario(User usuario) {
+        this.usuario = new User(usuario.getUsername(),usuario.getPassword(), usuario.getEmail(), usuario.getName());
+    }
+
+>>>>>>> ReviewDAOBook
     private UserDAO usuarioDAO = new UserDAO();
 
     public void autenticar(ActionEvent event) throws Exception{

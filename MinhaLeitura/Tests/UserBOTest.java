@@ -14,9 +14,9 @@ public class UserBOTest {
         userBO.createUser("user3", "654321", "user3@gmail.com", "User Three");
 
         //Testando busca por ID
-        User user1 = userBO.searchById(1L);
-        User user2 = userBO.searchById(2L);
-        User user3 = userBO.searchById(3L);
+        User user1 = userBO.searchById(0L);
+        User user2 = userBO.searchById(1L);
+        User user3 = userBO.searchById(2L);
 
         System.out.println("Usuário 1 encontrado: " + user1.getName()+ user1.getPassword()+ user1.getUsername());
         System.out.println("Usuário 2 encontrado: " + user2.getName());
@@ -38,6 +38,7 @@ public class UserBOTest {
         System.out.println("Autenticação usuário 2: " + auth2);
         System.out.println("Autenticação usuário 3: " + auth3);
 
+<<<<<<< HEAD
         //Testando criação de usuário inválido
         try {
             userBO.createUser(null, "123456", "user4@gmail.com", "User Four");
@@ -90,6 +91,9 @@ public class UserBOTest {
         } catch (Exception e) {
             e.getMessage();
         }
+=======
+        //testando book
+>>>>>>> ReviewDAOBook
 
     }
 }
