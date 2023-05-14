@@ -18,14 +18,11 @@ public class TeestBookBO {
     test.addBook(book2);
 
     BookDAO dao = new BookDAO();
-    book1 = dao.readBook(0L);
-    book2 = dao.readBook(1L);
+    book2 = test.findBookByName("1984");
     
-    System.out.println(book1.getTitle());
-    System.out.println(book2.getTitle());
-    book2 = dao.readBook(2L);
     System.out.println(book2.getTitle());
 
+    test.
 
     }
 }

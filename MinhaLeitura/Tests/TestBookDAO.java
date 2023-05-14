@@ -31,13 +31,15 @@ public class TestBookDAO {
         book1.setCategory("Nova categoria");
         System.out.println("\nTeste de atualização:");
         System.out.println("Livro 1 atualizado com sucesso? " + bookDAO.update(book1.getId(), book1));
-        System.out.println(bookDAO.readBook(book1.getId()).getTitle());
+        System.out.println(bookDAO.readBook(book1.getId()).getCategory());
+
 
         // Teste de busca pelo nome
         book1.setCategory("Busca por nome");
         System.out.println("\nBucando string 'Livro':");
         System.out.println("Resultado:");
-        for(LinkedListDouble<Book> booksRead = bookDAO.listByName("Livro"); booksRead.peekFirst() != null;){
+        LinkedListDouble<Book> booksRead = bookDAO.listByName("Livro");
+        for(int i = booksRead.getSize(); i > 0; i--){
             System.out.println(booksRead.peekFirst().getTitle());
             booksRead.removeFirst();
         }

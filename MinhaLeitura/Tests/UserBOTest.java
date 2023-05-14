@@ -1,8 +1,13 @@
 package Tests;
 
+import java.time.LocalDate;
+
 import SRC.Model.BO.UserBO;
+import SRC.Model.DAO.UserBookDAO;
 import SRC.Model.DAO.UserDAO;
+import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
+import Utils.ED.LinkedListDouble;
 
 public class UserBOTest {
     public static void main(String[] args) {
@@ -38,6 +43,7 @@ public class UserBOTest {
         System.out.println("Autenticação usuário 2: " + auth2);
         System.out.println("Autenticação usuário 3: " + auth3);
 
+<<<<<<< HEAD
         //Testando criação de usuário inválido
         try {
             userBO.createUser(null, "123456", "user4@gmail.com", "User Four");
@@ -91,6 +97,57 @@ public class UserBOTest {
             e.getMessage();
         }
 
+=======
+        //testando adicionar book na lista de livros do user
+
+        Book book1 = new Book("1984", "George Orwell", "Companhia das Letras", LocalDate.of(1949, 6, 8), "Ficção Distópica");
+        Book book2 = new Book("A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
+        
+        userBO.addBookList(0L, book1);
+        userBO.addBookList(0L, book2);
+
+        LinkedListDouble<Book> userBooks = userBO.listUserBook(0L);
+        System.out.println(userBooks.peekFirst().getTitle());
+        System.out.println(userBooks.peekFirst());
+        userBooks.removeFirst();
+        System.out.println(userBooks.peekFirst().getTitle());
+        System.out.println(userBooks.peekFirst());
+        
+        //Testando adicionar um comentário
+        UserBookDAO userBookDAO = new UserBookDAO();
+        userBO.addComent(0L, 0L, "Viva o comunismo");
+        System.out.println(userBookDAO.readBook(0L).getComment());
+
+        userBO.addComent(0L, 0L, "Viva o liberalismo");
+        System.out.println(userBookDAO.readBook(0L).getComment());
+
+        //Testando adicionar uma avaliação
+        userBO.addAvaliation(5, 0L, 0L);
+        System.out.println(userBookDAO.readBook(0L).getRating());
+
+        //Testando adicionar livro como "lendo"
+        userBO.reading(0L, 0L);
+        System.out.println(userBookDAO.readBook(0L).getReading());
+        System.out.println(userBookDAO.readBook(0L).getStarDate());
+
+        //Testando marcador de página
+        userBO.bookmark(200, 0L, 0L);
+        System.out.println(userBookDAO.readBook(0L).getPagesRead());
+        
+        //Testando adcionar livro como "concluido"
+        userBO.read(0L,0L);
+        System.out.println(userBookDAO.readBook(0L).getReading());
+        System.out.println(userBookDAO.readBook(0L).getEndDate());
+
+        //Testando lista de livros sendo lidos no momento
+        userBO.reading(0L, 1L);
+        userBooks = userBO.listUserBookRead(0L);
+        for(int i = userBooks.getSize(); i > 0;){
+            System.out.println(userBooks.peekFirst().getTitle());
+            userBooks.removeFirst();
+            i--;
+        }
+>>>>>>> ReviewDAOBook
 
     }
 }

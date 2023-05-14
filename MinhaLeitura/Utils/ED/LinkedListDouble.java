@@ -115,30 +115,23 @@ public class LinkedListDouble <T> implements LinkedListInterface<T>, Serializabl
 	}
 	
 	
-	public T peekFirst()
-	{	try{
-		if( head == null ) 
+	public T peekFirst() throws ListException
+	{	
+		if( head == null ){ 
 	        throw new ListException("Lista Vazia!!! \n");
-		else
+        }else{
 			return head.data;
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
         }
 	}
 	
 	
-	public T peekLast()
+	public T peekLast() throws ListException
 	{
-        try{
-            if( head == null ) 
-                throw new ListException("Lista Vazia!!! \n");
-            else
-                return tail.data;
-            }catch(Exception e){
-                e.printStackTrace();
-                return null;
-            }
+        if( head == null ){ 
+            throw new ListException("Lista Vazia!!! \n");
+        }else{
+            return tail.data;
+        }
 	}
 	
 
