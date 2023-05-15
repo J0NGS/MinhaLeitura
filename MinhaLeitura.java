@@ -1,7 +1,9 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import SRC.Model.BO.BookBO;
 import SRC.Model.BO.UserBO;
+import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 
 public class MinhaLeitura {
@@ -52,6 +54,57 @@ public class MinhaLeitura {
                     User userCache = userBo.login(aux.getUsername(),aux.getPassword());                    
                     scanner.nextLine(); // Limpar o buffer do scanner
 
+                    if (userCache != null) {
+                        boolean logado = true;
+                
+                        while (logado) {
+                            exibirMenuLogado();
+                            int opcaoLogado = scanner.nextInt();
+                            scanner.nextLine(); // Limpar o buffer do scanner
+                
+                            switch (opcaoLogado) {
+                                case 1:
+                                    limparTela();
+                                    System.out.println("Opção escolhida: Cadastrar livro");
+                                    Book book = new Book();   
+                                    System.out.println("Nome do livro");
+                                    book.setTitle(scanner.nextLine());
+                                    scanner.nextLine(); // Limpar o buffer do scanner
+                                    System.out.println("Nome do Autor/a");
+                                    book.setAuthor(scanner.nextLine());
+                                    scanner.nextLine(); // Limpar o buffer do scanner
+                                    System.out.println("Nome da editora");
+                                    book.setPublishe(scanner.nextLine());
+                                    scanner.nextLine(); // Limpar o buffer do scanner
+                                    System.out.println("Categoria");
+                                    book.setCategory(scanner.nextLine());
+                                    scanner.nextLine(); // Limpar o buffer do scanner
+                                    System.out.println("Data de lançamento aaaa/m/dd");
+                                    book.setReleaseDate(LocalDate.of(scanner.nextInt(),scanner.nextInt() ,scanner.nextInt() ));
+                                    scanner.nextLine(); // Limpar o buffer do scanner
+                                    userBo.addBookList(userCache.getId(), book);
+                                    
+                                    break;
+                                case 2:
+                                    // Opção: Listar livros
+                                    // Implemente a lógica de listagem de livros aqui
+                                    break;
+                                case 3:
+                                    // Opção: Remover livro
+                                    // Implemente a lógica de remoção de livro aqui
+                                    break;
+                                case 4:
+                                    // Opção: Sair
+                                    logado = false;
+                                    break;
+                                default:
+                                    limparTela();
+                                    System.out.println("Opção inválida. Tente novamente.");
+                                    break;
+                            }
+                        }
+                    }
+                
                     break;
                 case 3:
                     limparTela();
@@ -73,6 +126,14 @@ public class MinhaLeitura {
         System.out.println("1. Cadastrar");
         System.out.println("2. Entrar");
         System.out.println("3. Sair");
+        System.out.print("Escolha uma opção: ");
+    }
+    public static void exibirMenuLogado() {
+        System.out.println("===== MENU LOGADO =====");
+        System.out.println("1. Cadastrar livro");
+        System.out.println("2. Listar livros");
+        System.out.println("3. Ver dados pessoais sobre o book");
+        System.out.println("4. Sair");
         System.out.print("Escolha uma opção: ");
     }
 
