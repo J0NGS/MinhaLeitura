@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import SRC.Model.BO.BookBO;
 import SRC.Model.BO.UserBO;
+import SRC.Model.DAO.UserBookDAO;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import Utils.ED.LinkedListDouble;
@@ -13,6 +14,7 @@ public class MinhaLeitura {
         boolean sair = false;
         UserBO userBo = new UserBO();
         BookBO bookBo =  new BookBO();
+        UserBookDAO userBookDAO = new UserBookDAO();
 
         while (!sair) {
             exibirMenu();
@@ -87,20 +89,46 @@ public class MinhaLeitura {
                                     
                                     break;
                                 case 2:
+                                    limparTela();
+                                    System.out.println("Opção escolhida: Listar Livros");
                                     LinkedListDouble<Book> userBooks = userBo.listUserBook(userCache.getId());
                                     for(int i = userBooks.getSize(); i > 0; i--){
                                         userBooks.peekFirst().getTitle();
+                                        System.out.print("Livro : ");
                                         System.out.println(userBooks.peekFirst().getTitle());
+                                        System.out.println("----------------------------");
                                         userBooks.removeFirst();
                                     }
                                     break;
                                 case 3:
-                                    // Opção: Remover livro
+                                    limparTela();
+                                    System.out.println("Opção escolhida: Adicionar avaliação");
+                                    System.out.println("Busque o livro pelo nome");
+                                    Book bookAux = bookBo.findBookByName(scanner.nextLine());
+                                    scanner.nextLine();//limpando buffer
+                                    System.out.println("Adicione uma avliação de 0 a 5");
+                                    userBo.addAvaliation(scanner.nextInt(), userCache.getId(), bookAux.getId());
                                     // Implemente a lógica de remoção de livro aqui
                                     break;
                                 case 4:
-                                    // Opção: Sair
-                                    logado = false;
+                                    limparTela();
+                                    System.out.println("Opção escolhida: Marca página");
+                                    System.out.println("Busque o livro pelo nome");
+                                    bookAux = bookBo.findBookByName(scanner.nextLine());
+                                    scanner.nextLine();//limpando buffer
+                                    System.out.println("Qual foi a ultima pagina lida?");
+                                    userBo.bookmark(scanner.nextInt(), userCache.getId(), bookAux.getId());
+                                    break;
+                                case 5:
+                                    limparTela();
+                                    System.out.println("Opção escolhida: Visualizar informações pessoais sobre o livro");
+                                    System.out.println("Busque o livro pelo nome");
+                                    bookAux = bookBo.findBookByName(scanner.nextLine());
+                                    scanner.nextLine();//limpando buffer
+                                    System.out.print("Quantidade de paginas lidas :");
+                                    System.out.println(userBookDAO.readBook(bookAux.getId()).getPagesRead());
+                                    System.out.print("Avaliação do livro :");
+                                    System.out.println(userBookDAO.readBook(bookAux.getId()).getRating());
                                     break;
                                 default:
                                     limparTela();
@@ -137,8 +165,10 @@ public class MinhaLeitura {
         System.out.println("===== MENU LOGADO =====");
         System.out.println("1. Cadastrar livro");
         System.out.println("2. Listar livros");
-        System.out.println("3. Ver dados pessoais sobre o book");
-        System.out.println("4. Sair");
+        System.out.println("3. Adicionar avaliação do livro");
+        System.out.println("4. Marca Página");
+        System.out.println("5. Ver dados pessoais sobre o book");
+        System.out.println("6. Sair");
         System.out.print("Escolha uma opção: ");
     }
 
