@@ -42,7 +42,7 @@ public class UserBOTest {
         System.out.println("Nome user1: " + userLogin.getName());
         System.out.println("Username user1: " + userLogin.getUsername());
         System.out.println("Password user1: " + userLogin.getPassword());
-        System.out.println("Nome user2: " + userLogin2.getName());
+        System.out.println("Nome user2: " + userLogin.getName());
         System.out.println("Username user2: " + userLogin2.getUsername());
         System.out.println("Password user2: " + userLogin2.getPassword());
         System.out.println("Autenticação usuário 2: " + auth2);

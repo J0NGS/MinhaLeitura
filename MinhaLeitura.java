@@ -5,6 +5,7 @@ import SRC.Model.BO.BookBO;
 import SRC.Model.BO.UserBO;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
+import Utils.ED.LinkedListDouble;
 
 public class MinhaLeitura {
     public static void main(String[] args) {
@@ -86,8 +87,12 @@ public class MinhaLeitura {
                                     
                                     break;
                                 case 2:
-                                    // Opção: Listar livros
-                                    // Implemente a lógica de listagem de livros aqui
+                                    LinkedListDouble<Book> userBooks = userBo.listUserBook(userCache.getId());
+                                    for(int i = userBooks.getSize(); i > 0; i--){
+                                        userBooks.peekFirst().getTitle();
+                                        System.out.println(userBooks.peekFirst().getTitle());
+                                        userBooks.removeFirst();
+                                    }
                                     break;
                                 case 3:
                                     // Opção: Remover livro
