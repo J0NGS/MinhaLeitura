@@ -1,6 +1,7 @@
 package Tests;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import SRC.Model.BO.UserBO;
 import SRC.Model.DAO.UserBookDAO;
@@ -34,12 +35,16 @@ public class UserBOTest {
 
         //Testando login
         User userLogin = userBO.login("user1", "123456");
+        User userLogin2 = userBO.login("user2", "abcdef");
 
 
         System.out.println("Autenticação usuário 1: " + auth1);
         System.out.println("Nome user1: " + userLogin.getName());
         System.out.println("Username user1: " + userLogin.getUsername());
         System.out.println("Password user1: " + userLogin.getPassword());
+        System.out.println("Nome user2: " + userLogin2.getName());
+        System.out.println("Username user2: " + userLogin2.getUsername());
+        System.out.println("Password user2: " + userLogin2.getPassword());
         System.out.println("Autenticação usuário 2: " + auth2);
         System.out.println("Autenticação usuário 3: " + auth3);
 
@@ -55,12 +60,17 @@ public class UserBOTest {
         userBO.addBookList(0L, book4);
 
         LinkedListDouble<Book> userBooks = userBO.listUserBook(0L);
-        System.out.println(userBooks.peekFirst().getTitle());
-        System.out.println(userBooks.peekFirst());
-        userBooks.removeFirst();
-        System.out.println(userBooks.peekFirst().getTitle());
-        System.out.println(userBooks.peekFirst());
-        
+        ArrayList<Book> booksReturn = new ArrayList<>();
+        for(int i = userBooks.getSize(); i > 0; i--){
+            booksReturn.add(userBooks.peekFirst());
+            userBooks.removeFirst();
+        }
+
+        for(int i = booksReturn.size(); i >= 0; i--){
+            System.out.println(booksReturn.get(i -  1).getTitle());
+        }
+
+
         //Testando adicionar um comentário
         UserBookDAO userBookDAO = new UserBookDAO();
         userBO.addComent(0L, 0L, "Viva o comunismo");
