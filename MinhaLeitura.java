@@ -130,6 +130,29 @@ public class MinhaLeitura {
                                     System.out.print("Avaliação do livro :");
                                     System.out.println(userBookDAO.readBook(bookAux.getId()).getRating());
                                     break;
+                                case 6:
+                                    limparTela();
+                                    System.out.println("Opção escolhida: Visualizar informações do livro");
+                                    System.out.println("Busque o livro pelo nome");
+                                    bookAux = bookBo.findBookByName(scanner.nextLine());
+                                    scanner.nextLine();//limpando buffer
+                                    System.out.print("Nome do livro :");
+                                    System.out.println(bookAux.getTitle());
+                                    System.out.println("---------------------");
+                                    System.out.print("Nome do autor/a :");
+                                    System.out.println(bookAux.getAuthor());
+                                    System.out.println("---------------------");
+                                    System.out.print("Data de lançamento :");
+                                    System.out.println(bookAux.getReleaseDate());
+                                    System.out.println("---------------------");
+                                    System.out.print("Avaliação do livro :");
+                                    System.out.println(userBookDAO.readBook(bookAux.getId()).getRating());
+                                    System.out.println();
+                                    break;
+                                case 7:
+                                    limparTela();
+                                    logado = false;
+                                    break;
                                 default:
                                     limparTela();
                                     System.out.println("Opção inválida. Tente novamente.");
@@ -167,8 +190,9 @@ public class MinhaLeitura {
         System.out.println("2. Listar livros");
         System.out.println("3. Adicionar avaliação do livro");
         System.out.println("4. Marca Página");
-        System.out.println("5. Ver dados pessoais sobre o book");
-        System.out.println("6. Sair");
+        System.out.println("5. Ver dados sobre o livro");
+        System.out.println("6. Ver dados do livro");
+        System.out.println("7. Sair");
         System.out.print("Escolha uma opção: ");
     }
 
