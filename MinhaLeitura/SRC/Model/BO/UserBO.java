@@ -387,6 +387,7 @@ public class UserBO {
             if(userBook.getBook().equals(bookId)){
                 userBook.setReading(false);
                 userBook.setEndDate(LocalDateTime.now());
+                userBook.setPagesRead(userBook.getPagesRead() + 1);
                 userBookDao.update(userBook.getId(), userBook);
                 userBooks.removeFirst();
                 break;
@@ -403,4 +404,7 @@ public class UserBO {
         e.getMessage();
     }
   }
+
+  //Editar Livro que pertence ao user
+  
 }

@@ -47,9 +47,12 @@ public class UserBOTest {
 
         Book book1 = new Book("1984", "George Orwell", "Companhia das Letras", LocalDate.of(1949, 6, 8), "Ficção Distópica");
         Book book2 = new Book("A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
-        
+        Book book3 = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "Bloomsbury Publishing", LocalDate.of(1997, 6, 26), "Fantasy");
+        Book book4 = new Book("The Hobbit", "J.R.R. Tolkien", "Allen & Unwin", LocalDate.of(1937, 9, 21), "Fantasy");
         userBO.addBookList(0L, book1);
         userBO.addBookList(0L, book2);
+        userBO.addBookList(0L, book3);
+        userBO.addBookList(0L, book4);
 
         LinkedListDouble<Book> userBooks = userBO.listUserBook(0L);
         System.out.println(userBooks.peekFirst().getTitle());
@@ -85,7 +88,9 @@ public class UserBOTest {
         System.out.println(userBookDAO.readBook(0L).getEndDate());
 
         //Testando lista de livros sendo lidos no momento
+        userBO.reading(0L, 0L);
         userBO.reading(0L, 1L);
+        userBO.read(0L,1L);
         userBooks = userBO.listUserBookReading(0L);
         for(int i = userBooks.getSize(); i > 0;){
             System.out.println(userBooks.peekFirst().getTitle());
@@ -94,6 +99,7 @@ public class UserBOTest {
         }
 
         //Testando lista de livros já lidos
+        userBO.read(0L,2L);
         userBooks = userBO.listUserBookRead(0L);
         for(int i = userBooks.getSize(); i > 0;){
             System.out.println(userBooks.peekFirst().getTitle());

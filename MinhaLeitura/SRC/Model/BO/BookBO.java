@@ -105,4 +105,15 @@ public class BookBO {
             return null;
         }
     } 
+
+    public boolean editBook(Long bookId, Book entity){
+        boolean result = false;
+        try {
+            result = dao.update(bookId, entity);
+            return result;
+        } catch (Exception e) {
+            e.getMessage();
+            return false;
+        }
+    }
 }
