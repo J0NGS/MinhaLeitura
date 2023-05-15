@@ -84,6 +84,14 @@ public class UserBOTest {
         System.out.println(userBookDAO.readBook(0L).getReading());
         System.out.println(userBookDAO.readBook(0L).getEndDate());
 
+        //Testando lista de livros sendo lidos no momento
+        userBO.reading(0L, 1L);
+        userBooks = userBO.listUserBookRead(0L);
+        for(int i = userBooks.getSize(); i > 0;){
+            System.out.println(userBooks.peekFirst().getTitle());
+            userBooks.removeFirst();
+            i--;
+        }
 
     }
 }
