@@ -3,6 +3,7 @@ package SRC.Controller;
 import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
+import Utils.InterfaceNewComponents.HBoxBook;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,14 +25,15 @@ import java.util.ResourceBundle;
 public class EmLeituraController implements Initializable {
 
     private User usuario;
-    @FXML
-    public Label nomeUsuario;
+    @FXML public Label nomeUsuario;
+    @FXML public Label email;
 
-    @FXML public ListView<Book> minhasLeituras;
+    @FXML public ListView<HBoxBook> minhasLeituras;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       nomeUsuario.setText(usuario.getUsername());
+       nomeUsuario.setText(usuario.getName());
+        email.setText(usuario.getEmail());
         try {
             leiturasAtuais();
         } catch (Exception e) {
@@ -68,42 +70,24 @@ public class EmLeituraController implements Initializable {
     }
 
     public void leiturasAtuais() throws Exception{
-        Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
-        List<Book> livros = new ArrayList<>();
-        ObservableList<Book> observableBook;
-        livros.add(livro);
-        livro = new Book(1l, "Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
-        livros.add(livro);
-
-        minhasLeituras.setCellFactory(new Callback<ListView<Book>, ListCell<Book>>() {
-            @Override
-            public ListCell<Book> call(ListView<Book> bookListView) {
-                ListCell<Book> livroExibido = new ListCell() {
-                    @Override
-                    protected void updateItem(Object o, boolean b) {
-                        super.updateItem(o, b);
-                        Book livro = ((Book) o);
-                        if(livro != null) {
-                            setText(livro.getTitle() + "\n" + livro.getAuthor());
-                        }
-                    }
-                };
-
-                return livroExibido;
-            }
-        });
+        Book livro = new Book("Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        List<HBoxBook> livros = new ArrayList<>();
+        ObservableList<HBoxBook> observableBook;
+        livros.add(new HBoxBook(livro));
+        livro = new Book("Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        livros.add(new HBoxBook(livro));
 
         observableBook = FXCollections.observableArrayList(livros);
 
         minhasLeituras.setItems(observableBook);
-        //minhasLeituras.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
+        minhasLeituras.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
     }
 
-    private void abrirModalLeitura(ObservableValue<? extends Book> observable, Book livroAntigo, Book livroNovo){
-        Book livroSelecionado = minhasLeituras.getSelectionModel().getSelectedItem();
+    private void abrirModalLeitura(ObservableValue<? extends HBoxBook> observable, HBoxBook livroAntigo, HBoxBook livroNovo){
+        HBoxBook livroSelecionado = minhasLeituras.getSelectionModel().getSelectedItem();
 
         try {
-            Telas.modalLeitura(livroSelecionado);
+            Telas.modalLeitura(livroSelecionado.getLivro());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1020.0" style="-fx-background-color: #DDDDDA;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SRC.Controller.CadastroController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1020.0" style="-fx-background-color: #DDDDDA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SRC.Controller.CadastroController">
    <children>
       <ImageView fitHeight="710.0" fitWidth="993.0" layoutX="13.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -51,12 +55,12 @@
             <Image url="@../Images/tag.png" />
          </image>
       </ImageView>
-      <Label layoutX="396.0" layoutY="293.0" text="CPF" textFill="WHITE">
+      <Label layoutX="396.0" layoutY="293.0" text="User" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="cpf" layoutX="359.0" layoutY="317.0" prefHeight="44.0" prefWidth="288.8" promptText="000.000.000-00" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
+      <TextField fx:id="username" layoutX="359.0" layoutY="317.0" prefHeight="44.0" prefWidth="288.8" promptText="Anna123" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
          <font>
             <Font size="16.0" />
          </font>
@@ -91,7 +95,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <PasswordField fx:id="password" layoutX="357.0" layoutY="482.0" prefHeight="44.0" prefWidth="288.8" promptText="********" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
+      <PasswordField fx:id="senha" layoutX="357.0" layoutY="482.0" prefHeight="44.0" prefWidth="288.8" promptText="********" style="-fx-border-width: 2px; -fx-border-color: #000; -fx-border-radius: 30px; -fx-background-radius: 30px;">
          <font>
             <Font size="16.0" />
          </font>

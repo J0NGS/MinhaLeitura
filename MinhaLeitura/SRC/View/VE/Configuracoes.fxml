@@ -78,20 +78,20 @@
             <Image url="@../Images/Group%205%201.png" />
          </image>
       </ImageView>
-      <Label fx:id="nomeUsuario" layoutX="536.0" layoutY="191.0" text="Nome Usuário">
+      <Label fx:id="nomeUsuario" alignment="CENTER" layoutX="456.0" layoutY="191.0" prefHeight="45.0" prefWidth="349.0" text="Nome Usuário">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="512.0" layoutY="264.0" prefHeight="44.0" prefWidth="248.0" styleClass="textField" stylesheets="@../Style/style.css" text="Nome usuário">
+      <TextField fx:id="nome" layoutX="512.0" layoutY="264.0" prefHeight="44.0" prefWidth="248.0" styleClass="textField" stylesheets="@../Style/style.css" text="Nome usuário">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField layoutX="512.0" layoutY="343.0" prefHeight="44.0" prefWidth="248.0" styleClass="textField" stylesheets="@../Style/style.css" text="123.456.789-90">
+      <TextField fx:id="username" layoutX="512.0" layoutY="343.0" prefHeight="44.0" prefWidth="248.0" styleClass="textField" stylesheets="@../Style/style.css" text="Usuario123">
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField layoutX="512.0" layoutY="423.0" prefHeight="44.0" prefWidth="248.0" styleClass="textField" stylesheets="@../Style/style.css" text="usuario@email.com">
+      <TextField fx:id="email" layoutX="512.0" layoutY="423.0" prefHeight="44.0" prefWidth="248.0" styleClass="textField" stylesheets="@../Style/style.css" text="usuario@email.com">
          <font>
             <Font size="16.0" />
          </font></TextField>
@@ -100,7 +100,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="512.0" layoutY="319.0" text="CPF:">
+      <Label layoutX="512.0" layoutY="319.0" text="Username">
          <font>
             <Font size="16.0" />
          </font>

@@ -1,5 +1,6 @@
 package SRC.Controller;
 
+import SRC.Model.BO.UserBO;
 import SRC.Model.DAO.UserDAO;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
@@ -21,23 +22,21 @@ public class FrontController {
 
 
     private static User usuario;
+    UserBO userBO = new UserBO();
+    UserDAO userDAO = new UserDAO();
 
     public static User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(User usuario) {
-        this.usuario = new User(usuario.getUsername(),usuario.getPassword(), usuario.getEmail(), usuario.getName());
-    }
-
     private UserDAO usuarioDAO = new UserDAO();
 
     public void autenticar(ActionEvent event) throws Exception{
-        if (username.getText().isEmpty() && password.getText().isEmpty()){
-            avisoLogin.setVisible(true);
-        }else{
-            usuario = new User(1l, username.getText(), password.getText());
+        usuario = userBO.login(username.getText(), password.getText());
+        if (usuario != null){
             Telas.telaInicial(usuario);
+        }else{
+            avisoLogin.setVisible(true);
         }
 
     }

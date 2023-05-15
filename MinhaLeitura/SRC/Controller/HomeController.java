@@ -4,6 +4,7 @@ import SRC.Model.VO.Book;
 import SRC.Model.VO.User;
 import SRC.View.Telas;
 import Utils.InterfaceNewComponents.VBoxBook;
+import Utils.InterfaceNewComponents.VBoxReadBook;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,13 +25,17 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     private User usuario;
     @FXML public Label nomeUsuario;
+    @FXML public Label email;
     @FXML public ListView<VBoxBook> minhasLeiturasAtuais;
+    @FXML public ListView<VBoxReadBook> leiturasFinalizadas;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            nomeUsuario.setText(usuario.getUsername());
+            nomeUsuario.setText(usuario.getName());
+            email.setText(usuario.getEmail());
             leiturasAtuais();
+            leiturasConcluidas();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -62,17 +67,30 @@ public class HomeController implements Initializable {
     }
 
     public void leiturasAtuais() throws Exception{
-        Book livro = new Book(1l, "Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        Book livro = new Book("Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
         List<VBoxBook> livros = new ArrayList<>();
         ObservableList<VBoxBook> observableBook;
         livros.add(new VBoxBook(livro));
-        livro = new Book(1l, "Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        livro = new Book("Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
         livros.add(new VBoxBook(livro));
 
         observableBook = FXCollections.observableArrayList(livros);
 
         minhasLeiturasAtuais.setItems(observableBook);
         minhasLeiturasAtuais.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
+    }
+
+    public void leiturasConcluidas() throws Exception {
+        Book livro = new Book("Corte de espinhos e rosas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        List<VBoxReadBook> livros = new ArrayList<>();
+        ObservableList<VBoxReadBook> observableBook;
+        livros.add(new VBoxReadBook(livro));
+        livro = new Book("Corte de asas e ruinas", "Sarah J. Mass", "Galera", LocalDate.of(2021, 9, 21), "Fantasy");
+        livros.add(new VBoxReadBook(livro));
+
+        observableBook = FXCollections.observableArrayList(livros);
+        leiturasFinalizadas.setItems(observableBook);
+        //leiturasFinalizadas.getSelectionModel().selectedItemProperty().addListener(this::abrirModalLeitura);
     }
 
     public void abrirModalAddLeitura(ActionEvent event) throws  Exception{

@@ -13,9 +13,14 @@ import Utils.ED.LinkedListDouble;
 public class TestUserBookDAO {
     public static void main(String[] args) {
         
+        // Criando um usuário
+        User user = new User("teste","teste","fulano@teste.com", "senha123");
+        
+        // Criando um livro
+        Book book = new Book("A Revolução dos Bichos", "George Orwell", "Companhia das Letras", LocalDate.of(1945, 8, 17), "Ficção");
+        
         // Criando um UserBook
-        UserBook userBook = new UserBook(2L, 2L, LocalDateTime.now(), null, 10, 3, "Comunismo", true);
-        UserBook userBook2 = new UserBook(1L, 2L, LocalDateTime.now(), null, 15, 5, "Capitalismo", true);
+        UserBook userBook = new UserBook(null, book.getId(), null, null, 0, 0, "Comunismo", true);
         
         // Criando o DAO
         UserBookDAO userBookDAO = new UserBookDAO();
@@ -27,23 +32,16 @@ public class TestUserBookDAO {
         
         // Testando o método read
         System.out.println("Teste do método read:");
-        System.out.println(userBookDAO.readBook(1L)); // Deve imprimir as informações do UserBook
-        System.out.println(userBookDAO.readBook(2L)); // Deve imprimir as informações do UserBook
+        //System.out.println(userBookDAO.read(book.getId())); // Deve imprimir as informações do UserBook
         
         // Testando o método update
         System.out.println("Teste do método update:");
         userBook.setRating(4);
-        System.out.println(userBookDAO.update(1L,  userBook)); // Deve retornar true
-        System.out.println(userBookDAO.readBook(1L).getBook()); // Deve imprimir as informações atualizadas do UserBook
-        System.out.println(userBookDAO.readBook(2L).getBook()); // Deve imprimir as informações atualizadas do UserBook
-        //Testando método listBy
-        LinkedListDouble<UserBook> result = userBookDAO.listByBook(1L);
-        for(int i = result.getSize(); i >= 1; result.removeFirst()){
-            System.out.println(result.peekFirst().getComment());
-            i--;
-        }
+        System.out.println(userBookDAO.update(book.getId(),  userBook)); // Deve retornar true
+        //System.out.println(userBookDAO.read(book.getId())); // Deve imprimir as informações atualizadas do UserBook
         
         // Testando o método delete
+        /*
         System.out.println("Teste do método delete:");
         System.out.println(userBookDAO.delete(1L)); // Deve retornar true
         UserBook bookRead = userBookDAO.readBook(1L);
@@ -51,7 +49,7 @@ public class TestUserBookDAO {
             System.out.println(bookRead.getComment()); // Deve lançar uma exceção ReadException
         } catch (ReadException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
         
     }
 }

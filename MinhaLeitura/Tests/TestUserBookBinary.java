@@ -1,6 +1,7 @@
 package Tests;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import SRC.Model.VO.UserBook;
 import Utils.BinaryPersisitence.BinaryUserBookHandler;
@@ -12,9 +13,9 @@ public class TestUserBookBinary {
         BinaryUserBookHandler handler = new BinaryUserBookHandler("E://Documentos/UFERSA/Disciplinas/ED1/MinhaLeitura/MinhaLeitura/Tests/Bin/UserBookTest.bin");
 
         // Criando instâncias de UserBook
-        UserBook ub1 = new UserBook(null, 1L, LocalDate.now(), null, 50, 4, "Muito bom", true);
-        UserBook ub2 = new UserBook(null, 2L, LocalDate.now(), LocalDate.now(), 100, 5, "Excelente", false);
-        UserBook ub3 = new UserBook(null, 3L, LocalDate.now(), LocalDate.now(), 10, 3, "Regular", false);
+        UserBook ub1 = new UserBook(null, 1L, LocalDateTime.now(), null, 50, 4, "Muito bom", true);
+        UserBook ub2 = new UserBook(null, 2L, LocalDateTime.now(), LocalDateTime.now(), 100, 5, "Excelente", false);
+        UserBook ub3 = new UserBook(null, 3L, LocalDateTime.now(), LocalDateTime.now(), 10, 3, "Regular", false);
 
         // Criando a hash table
         HashTable<Long, UserBook> userBooks = new HashTable<>(10);

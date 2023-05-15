@@ -23,7 +23,7 @@ public class UserBOTest {
         User user2 = userBO.searchById(1L);
         User user3 = userBO.searchById(2L);
 
-        System.out.println("Usuário 1 encontrado: " + user1.getName());
+        System.out.println("Usuário 1 encontrado: " + user1.getName()+ user1.getPassword()+ user1.getUsername());
         System.out.println("Usuário 2 encontrado: " + user2.getName());
         System.out.println("Usuário 3 encontrado: " + user3.getName());
 
